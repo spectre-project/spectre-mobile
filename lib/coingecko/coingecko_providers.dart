@@ -47,7 +47,7 @@ final _spectrePriceRemoteProvider = FutureProvider<CoinGeckoPrice>((ref) async {
       timestamp: nowTimestamp,
     );
   } catch (e, st) {
-    log.e('Failed to fetch KAS exchange rate', error: e, stackTrace: st);
+    log.e('Failed to fetch SPR exchange rate', error: e, stackTrace: st);
     if (cached.currency == currency.currency) {
       return cached;
     }

@@ -11,7 +11,7 @@ class TokenInfo with _$TokenInfo {
     required int decimals,
   }) = _TokenInfo;
 
-  static const TokenInfo spectre = TokenInfo(tokenId: 'KAS', decimals: 8);
+  static const TokenInfo spectre = TokenInfo(tokenId: 'SPR', decimals: 8);
 
   factory TokenInfo.fromJson(Map<String, dynamic> json) =>
       _$TokenInfoFromJson(json);

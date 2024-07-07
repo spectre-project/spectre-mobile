@@ -12,11 +12,7 @@ class SpectrumDarkTheme extends BaseTheme {
   //static const redDark = Color(0xfffc865a);
   static const redDark = Color.fromRGBO(255, 0, 90, 1.0);
 
-  static const blueishGreyDark = Color(0xff232323);
-
-  static const blueishGreyLight = Color(0xff323232);
-
-  static const blueishGreyDarkest = Color(0xff232323);
+  static const midnightDark = Color.fromARGB(255, 0, 0, 0);
 
   static const white = Color(0xffffffff);
 
@@ -40,14 +36,14 @@ class SpectrumDarkTheme extends BaseTheme {
   Color successDark = redDark;
   Color successDark30 = redDark.withOpacity(0.3);
 
-  Color background = blueishGreyDark;
-  Color background40 = blueishGreyDark.withOpacity(0.4);
-  Color background00 = blueishGreyDark.withOpacity(0.0);
+  Color background = midnightDark;
+  Color background40 = midnightDark.withOpacity(0.4);
+  Color background00 = midnightDark.withOpacity(0.0);
 
-  Color backgroundDark = blueishGreyLight;
-  Color backgroundDark00 = blueishGreyLight.withOpacity(0.0);
+  Color backgroundDark = midnightDark;
+  Color backgroundDark00 = midnightDark.withOpacity(0.0);
 
-  Color backgroundDarkest = blueishGreyDarkest;
+  Color backgroundDarkest = midnightDark;
 
   Color text = white.withOpacity(0.9);
   Color text60 = white.withOpacity(0.6);
