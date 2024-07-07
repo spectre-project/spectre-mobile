@@ -136,7 +136,7 @@ class SharedPrefsUtil {
   ThemeSetting getTheme() {
     return ThemeSetting(ThemeOptions.values.byName(get(
       cur_theme,
-      defaultValue: ThemeOptions.spectrum_DARK.name,
+      defaultValue: ThemeOptions.SPECTRUM_DARK.name,
     )));
   }
 

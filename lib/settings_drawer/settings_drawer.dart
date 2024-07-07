@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../app_constants.dart';
 import '../app_icons.dart';
 import '../app_providers.dart';
 import '../contacts/contacts_widget.dart';
@@ -417,27 +416,6 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                           },
                         ),
                       ],
-                      if (canDonate) ...[
-                        Divider(height: 2, color: theme.text15),
-                        SingleLineItem(
-                          heading: l10n.donate,
-                          settingIcon: Icons.handshake_rounded,
-                          onPressed: () {
-                            setState(() => _donateOpen = true);
-                            _donateController.forward();
-                          },
-                        ),
-                      ],
-                      Divider(height: 2, color: theme.text15),
-                      DoubleLineItem(
-                        heading: l10n.contactSupport,
-                        defaultMethod: const ContactSupportItem(
-                          email: kSupportEmail,
-                        ),
-                        icon: Icons.email,
-                        onPressed: () => openUrl(
-                            'mailto:$kSupportEmail?subject=Spectrum support'),
-                      ),
                       Divider(height: 2, color: theme.text15),
                       SingleLineItem(
                         heading: l10n.shareSpectrum,

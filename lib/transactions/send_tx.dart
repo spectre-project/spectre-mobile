@@ -9,7 +9,7 @@ class SendTx with _$SendTx {
   const SendTx._();
 
   factory SendTx({
-    required spectreUri uri,
+    required SpectreUri uri,
     Address? changeAddress,
     required BigInt amountRaw,
     @Default([]) List<Utxo> utxos,

@@ -4,14 +4,14 @@ import 'package:flutter/services.dart';
 import 'base_theme.dart';
 
 class SpectrumLightTheme extends BaseTheme {
-  //static const deepBlue = Color(0xFF009688);
-  static const deepBlue = Color(0xFF6FC0B3);
+  //static const deepRed = Color(0xFF009688);
+  static const deepRed = Color.fromRGBO(255, 0, 90, 1.0);
 
-  //static const green = Color(0xFF009688);
-  static const green = Color(0xFF6FC0B3);
+  //static const red = Color(0xFF009688);
+  static const red = Color.fromRGBO(255, 0, 90, 1.0);
 
-  //static const greenLight = Color(0xFF9EEDD4);
-  static const greenLight = Color(0xFF6FC0B3);
+  //static const redLight = Color(0xFF9EEDD4);
+  static const redLight = Color.fromRGBO(255, 0, 90, 1.0);
 
   static const white = Color(0xFFFFFFFF);
 
@@ -21,25 +21,25 @@ class SpectrumLightTheme extends BaseTheme {
 
   static const black = Color(0xFF000000);
 
-  static const darkDeepBlue = Color(0xFF009688);
+  static const darkdeepRed = Color.fromARGB(255, 150, 0, 0);
 
   bool isLightTheme = true;
 
-  Color primary = deepBlue;
-  Color primary60 = deepBlue.withOpacity(0.9);
-  Color primary45 = deepBlue.withOpacity(0.8);
-  Color primary30 = deepBlue.withOpacity(0.6);
-  Color primary20 = deepBlue.withOpacity(0.45);
-  Color primary15 = deepBlue.withOpacity(0.3);
-  Color primary10 = deepBlue.withOpacity(0.2);
+  Color primary = deepRed;
+  Color primary60 = deepRed.withOpacity(0.9);
+  Color primary45 = deepRed.withOpacity(0.8);
+  Color primary30 = deepRed.withOpacity(0.6);
+  Color primary20 = deepRed.withOpacity(0.45);
+  Color primary15 = deepRed.withOpacity(0.3);
+  Color primary10 = deepRed.withOpacity(0.2);
 
-  Color success = green;
-  Color success60 = green.withOpacity(0.6);
-  Color success30 = green.withOpacity(0.3);
-  Color success15 = green.withOpacity(0.15);
+  Color success = red;
+  Color success60 = red.withOpacity(0.6);
+  Color success30 = red.withOpacity(0.3);
+  Color success15 = red.withOpacity(0.15);
 
-  Color successDark = greenLight;
-  Color successDark30 = greenLight.withOpacity(0.3);
+  Color successDark = redLight;
+  Color successDark30 = redLight.withOpacity(0.3);
 
   Color background = white;
   Color background40 = white.withOpacity(0.4);
@@ -82,12 +82,12 @@ class SpectrumLightTheme extends BaseTheme {
       SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent);
 
   BoxShadow boxShadow = BoxShadow(
-    color: darkDeepBlue.withOpacity(0.1),
+    color: darkdeepRed.withOpacity(0.1),
     offset: Offset(0, 3),
     blurRadius: 15,
   );
   BoxShadow boxShadowButton = BoxShadow(
-    color: darkDeepBlue.withOpacity(0.2),
+    color: darkdeepRed.withOpacity(0.2),
     offset: Offset(0, 3),
     blurRadius: 15,
   );

@@ -4,13 +4,13 @@ import 'package:flutter/services.dart';
 import 'base_theme.dart';
 
 class SpectrumDarkTheme extends BaseTheme {
-  static const brightBlue = Color(0xff49eacb);
+  static const brightRed = Color.fromRGBO(255, 0, 90, 1.0);
 
-  //static const green = Color(0xfffc865a);
-  static const green = Color(0xffbcbec0);
+  //static const red = Color(0xfffc865a);
+  static const red = Color.fromARGB(255, 231, 218, 218);
 
-  //static const greenDark = Color(0xfffc865a);
-  static const greenDark = Color(0xff49eacb);
+  //static const redDark = Color(0xfffc865a);
+  static const redDark = Color.fromRGBO(255, 0, 90, 1.0);
 
   static const blueishGreyDark = Color(0xff232323);
 
@@ -24,21 +24,21 @@ class SpectrumDarkTheme extends BaseTheme {
 
   bool isLightTheme = false;
 
-  Color primary = brightBlue;
-  Color primary60 = brightBlue.withOpacity(0.6);
-  Color primary45 = brightBlue.withOpacity(0.45);
-  Color primary30 = brightBlue.withOpacity(0.3);
-  Color primary20 = brightBlue.withOpacity(0.2);
-  Color primary15 = brightBlue.withOpacity(0.15);
-  Color primary10 = brightBlue.withOpacity(0.1);
+  Color primary = brightRed;
+  Color primary60 = brightRed.withOpacity(0.6);
+  Color primary45 = brightRed.withOpacity(0.45);
+  Color primary30 = brightRed.withOpacity(0.3);
+  Color primary20 = brightRed.withOpacity(0.2);
+  Color primary15 = brightRed.withOpacity(0.15);
+  Color primary10 = brightRed.withOpacity(0.1);
 
-  Color success = green;
-  Color success60 = green.withOpacity(0.6);
-  Color success30 = green.withOpacity(0.3);
-  Color success15 = green.withOpacity(0.15);
+  Color success = red;
+  Color success60 = red.withOpacity(0.6);
+  Color success30 = red.withOpacity(0.3);
+  Color success15 = red.withOpacity(0.15);
 
-  Color successDark = greenDark;
-  Color successDark30 = greenDark.withOpacity(0.3);
+  Color successDark = redDark;
+  Color successDark30 = redDark.withOpacity(0.3);
 
   Color background = blueishGreyDark;
   Color background40 = blueishGreyDark.withOpacity(0.4);
