@@ -2,7 +2,7 @@ name: spectrum
 description: The Ultimate Self-Custodial Wallet for the Spectre Network.
 publish_to: "none"
 
-version: 1.0.1+12
+version: 3.14.1
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
