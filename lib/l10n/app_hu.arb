@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Minden cím látható",
   "addressFilterDialogOptionNonZeroBalances": "Címek egyenleggel",
   "importOption24WordsTitle": "24 szavas Secret Phrase importálása",
-  "importOption24WordsDescription": "Kompatibilis Cli pénztárcával és Ledger-rel ",
+  "importOption24WordsDescription": "Kompatibilis Cli pénztárcával",
   "importOption12WordsTitle": "12 szavas Secret Phrase importálása",
   "importOption12WordsDescription": "Kompatibilis a webes pénztárcával és Spectre Desktop mentéssel.",
   "importOptionKpubTitle": "Tárca figyelés importálása",

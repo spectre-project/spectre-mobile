@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "مشاهده همه آدرس ها",
   "addressFilterDialogOptionNonZeroBalances": "مشاهده آدرس ها با موجودی",
   "importOption24WordsTitle": "وارد کردن عبارت مخفی 24 کلمه ای ",
-  "importOption24WordsDescription": "سازگار با کیف پول Cli و Ledger",
+  "importOption24WordsDescription": "سازگار با کیف پول Cli",
   "importOption12WordsTitle": "وارد کردن عبارت مخفی 12 کلمه ای",
   "importOption12WordsDescription": "سازگار با کیف پول Spectre Desktop و Web Wallet",
   "importOptionKpubTitle": "وارد کردن کیف پول Watch Only",

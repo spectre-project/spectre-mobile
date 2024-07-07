@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Wyświetl wszystkie adresy",
   "addressFilterDialogOptionNonZeroBalances": "Wyświetl adresy, na których jest Spectre",
   "importOption24WordsTitle": "Importuj 24-słowną tajną frazę",
-  "importOption24WordsDescription": "Kompatybilny z portfelem Cli i Ledger",
+  "importOption24WordsDescription": "Kompatybilny z portfelem Cli",
   "importOption12WordsTitle": "Importuj 12-słowną tajną frazę",
   "importOption12WordsDescription": "Kompatybilny z portfelem Web i Spectre Desktop",
   "importOptionKpubTitle": "Importuj portfel w trybie tylko do oglądania",

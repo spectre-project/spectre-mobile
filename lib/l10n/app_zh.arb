@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "查看全部地址",
   "addressFilterDialogOptionNonZeroBalances": "查看所有非零余额地址",
   "importOption24WordsTitle": "导入 24 个助记词",
-  "importOption24WordsDescription": "与 Cli 钱包和 Ledger 兼容",
+  "importOption24WordsDescription": "与Cli钱包兼容",
   "importOption12WordsTitle": "导入 12 个助记词",
   "importOption12WordsDescription": "与网页钱包和 Spectre Desktop 兼容",
   "importOptionKpubTitle": "导入只读钱包",

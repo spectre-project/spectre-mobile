@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Lihat Semua Alamat",
   "addressFilterDialogOptionNonZeroBalances": "Lihat Alamat Dengan Saldo",
   "importOption24WordsTitle": "Impor 24 Kata Frasa Rahasia",
-  "importOption24WordsDescription": "Kompatibel dengan Dompet Cli dan Ledger",
+  "importOption24WordsDescription": "Kompatibel dengan Dompet Cli",
   "importOption12WordsTitle": "Impor 12 Kata Frasa Rahasia",
   "importOption12WordsDescription": "Kompatibel dengan Dompet Web dan Spectre Desktop",
   "importOptionKpubTitle": "Impor Dompet Khusus Hanya Lihat Saja",

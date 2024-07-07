@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Ver Todas las Direcciones",
   "addressFilterDialogOptionNonZeroBalances": "Ver Todas las Direcciones con Balance",
   "importOption24WordsTitle": "Importar Frase Secreta de 24 Palabras",
-  "importOption24WordsDescription": "Compatible con Cli Wallet y Ledger",
+  "importOption24WordsDescription": "Compatible con Cli Wallet",
   "importOption12WordsTitle": "Importar Frase Secreta de 12 Palabras",
   "importOption12WordsDescription": "Compatible con Web Wallet y Spectre Desktop",
   "importOptionKpubTitle": "Importar Billetera de Solo Lectura",

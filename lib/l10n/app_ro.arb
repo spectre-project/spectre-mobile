@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Vezi toate Adresele",
   "addressFilterDialogOptionNonZeroBalances": "Vezi Adresele cu sold",
   "importOption24WordsTitle": "Importă cele 24 cuvinte secrete",
-  "importOption24WordsDescription": "Compatibil cu Portofel Cli si Ledger",
+  "importOption24WordsDescription": "Compatibil cu Portofel Cli",
   "importOption12WordsTitle": "Importă cele 12 cuvinte secrete",
   "importOption12WordsDescription": "Compatibil cu Web Wallet și Spectre Desktop",
   "importOptionKpubTitle": "Importă Portofelul Watch Only",

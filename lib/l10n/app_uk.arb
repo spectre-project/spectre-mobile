@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Переглянути всі адреси",
   "addressFilterDialogOptionNonZeroBalances": "Переглянути адреси з балансом",
   "importOption24WordsTitle": "Імпортувати секретну фразу з 24 слів",
-  "importOption24WordsDescription": "Сумісний з консольним гаманцем CLI та Ledger",
+  "importOption24WordsDescription": "Сумісний з консольним гаманцем CLI",
   "importOption12WordsTitle": "Імпортувати секретну фразу з 12 слів",
   "importOption12WordsDescription": "Сумісний з веб-гаманцем та Spectre Desktop",
   "importOptionKpubTitle": "Імпортувати гаманець тільки для перегладу",

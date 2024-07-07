@@ -4,8 +4,6 @@ import 'package:flutter/services.dart';
 import 'base_theme.dart';
 
 class SpectrumDarkTheme extends BaseTheme {
-  static const brightRed = Color.fromRGBO(199, 0, 70, 1);
-
   //static const red = Color(0xfffc865a);
   static const red = Color.fromARGB(255, 231, 218, 218);
 
@@ -20,13 +18,13 @@ class SpectrumDarkTheme extends BaseTheme {
 
   bool isLightTheme = false;
 
-  Color primary = brightRed;
-  Color primary60 = brightRed.withOpacity(0.6);
-  Color primary45 = brightRed.withOpacity(0.45);
-  Color primary30 = brightRed.withOpacity(0.3);
-  Color primary20 = brightRed.withOpacity(0.2);
-  Color primary15 = brightRed.withOpacity(0.15);
-  Color primary10 = brightRed.withOpacity(0.1);
+  Color primary = redDark;
+  Color primary60 = redDark.withOpacity(0.6);
+  Color primary45 = redDark.withOpacity(0.45);
+  Color primary30 = redDark.withOpacity(0.3);
+  Color primary20 = redDark.withOpacity(0.2);
+  Color primary15 = redDark.withOpacity(0.15);
+  Color primary10 = redDark.withOpacity(0.1);
 
   Color success = red;
   Color success60 = red.withOpacity(0.6);

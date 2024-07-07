@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Tüm Adresleri Göster",
   "addressFilterDialogOptionNonZeroBalances": "Bakiyesi Olan Adresleri Göster",
   "importOption24WordsTitle": "24 Kelimelik Gizli Cümleyi Aktar",
-  "importOption24WordsDescription": "Cli Cüzdan ve Ledger ile uyumlu",
+  "importOption24WordsDescription": "Cli Wallet ile uyumlu",
   "importOption12WordsTitle": "12 Kelimelik Gizli Cümleyi Aktar",
   "importOption12WordsDescription": "Web Cüzdan ve Spectre Desktop ile uyumlu",
   "importOptionKpubTitle": "Sadece İzlemek için Cüzdan Aktar",

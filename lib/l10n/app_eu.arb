@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Ikusi helbide guztiak",
   "addressFilterDialogOptionNonZeroBalances": "Ikusi helbideak saldoarekin",
   "importOption24WordsTitle": "Inportatu 24 hitz esaldi sekretua",
-  "importOption24WordsDescription": "Cli Wallet eta Ledger-ekin bateragarria",
+  "importOption24WordsDescription": "Cli Walletekin bateragarria",
   "importOption12WordsTitle": "Inportatu 12 hitz esaldi sekretua",
   "importOption12WordsDescription": "Web Wallet eta Spectre Desktop-rekin bateragarria",
   "importOptionKpubTitle": "Inportatu zorroa ikusteko moduan bakarrik",

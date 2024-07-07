@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Näytä kaikki osoitteet",
   "addressFilterDialogOptionNonZeroBalances": "Näytä osoitteet, joissa saldoa",
   "importOption24WordsTitle": "Tuo 24 turvasanaa",
-  "importOption24WordsDescription": "Yhteensopiva Cli-lompakon ja Ledgerin kanssa",
+  "importOption24WordsDescription": "Yhteensopiva Cli-lompakon",
   "importOption12WordsTitle": "Tuo 12 turvasanaa",
   "importOption12WordsDescription": "Yhteensopiva Web-lompakon ja Spectre Desktop:n kanssa",
   "importOptionKpubTitle": "Tuo Watch-seurantalompakko",

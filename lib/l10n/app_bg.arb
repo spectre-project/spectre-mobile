@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Покажи всички адреси",
   "addressFilterDialogOptionNonZeroBalances": "Покажи адресите с наличен баланс",
   "importOption24WordsTitle": "Импортирай тайна фраза от 24 думи",
-  "importOption24WordsDescription": "Съвместим с Cli Wallet и Ledger",
+  "importOption24WordsDescription": "Съвместим с Cli Wallet",
   "importOption12WordsTitle": "Импортирай тайна фраза от 12 думи",
   "importOption12WordsDescription": "Съвместим с Web Wallet и Spectre Desktop",
   "importOptionKpubTitle": "Импортирай портфейл само за преглед",

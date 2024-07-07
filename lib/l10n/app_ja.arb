@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "View All Addresses",
   "addressFilterDialogOptionNonZeroBalances": "View Addresses With Balance",
   "importOption24WordsTitle": "Import 24 Word Secret Phrase",
-  "importOption24WordsDescription": "Compatible with Cli Wallet and Ledger",
+  "importOption24WordsDescription": "Compatible with Cli Wallet",
   "importOption12WordsTitle": "Import 12 Word Secret Phrase",
   "importOption12WordsDescription": "Compatible with Web Wallet and Spectre Desktop",
   "importOptionKpubTitle": "Import Watch Only Wallet",

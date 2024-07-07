@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Se alle adresser",
   "addressFilterDialogOptionNonZeroBalances": "Se adresser med balance",
   "importOption24WordsTitle": "Importer 24 ord hemmelig sætning",
-  "importOption24WordsDescription": "Kompatibel med Cli Wallet og Ledger",
+  "importOption24WordsDescription": "Kompatibel med Cli Wallet",
   "importOption12WordsTitle": "Importer 12 ord hemmelig sætning",
   "importOption12WordsDescription": "Kompatibel med Web Wallet og Spectre Desktop",
   "importOptionKpubTitle": "Importer se-kun pung",

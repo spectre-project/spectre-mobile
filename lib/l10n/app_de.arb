@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Zeige alle Adressen",
   "addressFilterDialogOptionNonZeroBalances": "Zeige Adressen mit Guthaben",
   "importOption24WordsTitle": "24 Wort Seed Phrase importieren",
-  "importOption24WordsDescription": "Kompatibel mit Cli Wallet und Ledger",
+  "importOption24WordsDescription": "Kompatibel mit Cli Wallet",
   "importOption12WordsTitle": "12 Wort Seed Phrase importieren",
   "importOption12WordsDescription": "Kompatibel mit Web Wallet und Spectre Desktop",
   "importOptionKpubTitle": "Beobachtungswallet importieren",

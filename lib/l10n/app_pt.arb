@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Mostrar Todos Os Endereços",
   "addressFilterDialogOptionNonZeroBalances": "Mostrar Todos Os Endereços Com Saldo",
   "importOption24WordsTitle": "Importar Frase Secreta De 24 Palavras",
-  "importOption24WordsDescription": "Compatível com carteira CLI e Ledger",
+  "importOption24WordsDescription": "Compatível com carteira CLI",
   "importOption12WordsTitle": "Importar Frase Secreta De 12 Palavras",
   "importOption12WordsDescription": "Compatível com carteira WEB e Spectre Desktop",
   "importOptionKpubTitle": "Importar Carteira Só Para Visualizar ",

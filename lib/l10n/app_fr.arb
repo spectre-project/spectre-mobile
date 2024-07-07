@@ -289,7 +289,7 @@
   "addressFilterDialogOptionAllAddresses": "Voir toutes les adresses",
   "addressFilterDialogOptionNonZeroBalances": "Voir les adresses avec un solde",
   "importOption24WordsTitle": "Importer une passe phrase de 24 mots",
-  "importOption24WordsDescription": "Compatible avec le portefeuille CLI et Ledger",
+  "importOption24WordsDescription": "Compatible avec le portefeuille CLI",
   "importOption12WordsTitle": "Importer une passe phrase de 12 mots",
   "importOption12WordsDescription": "Compatible avec le portefeuille web et Spectre Desktop",
   "importOptionKpubTitle": "Importer un portefeuille en lecture seule",
