@@ -8,8 +8,8 @@ import 'models/networks.dart';
 import 'utils/crypto.dart';
 import 'utils/ecurve.dart' as ecc;
 
-class BIP32Kdx extends BIP32 {
-  BIP32Kdx(super._d, super._Q, super.chainCode, super.network);
+class BIP32Desktop extends BIP32 {
+  BIP32Desktop(super._d, super._Q, super.chainCode, super.network);
 
   @override
   BIP32 derive(int index) {
@@ -34,15 +34,15 @@ class BIP32Kdx extends BIP32 {
     if (!ecc.isPrivate(il)) {
       return derive(index + 1);
     }
-    BIP32Kdx hd;
+    BIP32Desktop hd;
     if (!isNeutered()) {
       final ki = ecc.privateAdd(privateKey!, il);
       if (ki == null) return derive(index + 1);
-      hd = BIP32Kdx.fromPrivateKey(ki, ir, network);
+      hd = BIP32Desktop.fromPrivateKey(ki, ir, network);
     } else {
       final ki = ecc.pointAddScalar(publicKey, il, true);
       if (ki == null) return derive(index + 1);
-      hd = BIP32Kdx.fromPublicKey(ki, ir, network);
+      hd = BIP32Desktop.fromPublicKey(ki, ir, network);
     }
     hd.depth = depth + 1;
     hd.index = index;
@@ -50,7 +50,7 @@ class BIP32Kdx extends BIP32 {
     return hd;
   }
 
-  factory BIP32Kdx.fromBase58(String string, [NetworkType? nw]) {
+  factory BIP32Desktop.fromBase58(String string, [NetworkType? nw]) {
     Uint8List buffer = bs58check.decode(string);
     if (buffer.length != 78) throw ArgumentError("Invalid buffer length");
     NetworkType network = nw ?? networks.bitcoin;
@@ -78,7 +78,7 @@ class BIP32Kdx extends BIP32 {
 
     // 32 bytes: the chain code
     Uint8List chainCode = buffer.sublist(13, 45);
-    BIP32Kdx hd;
+    BIP32Desktop hd;
 
     // 33 bytes: private key data (0x00 + k)
     if (version == network.bip32.private) {
@@ -86,11 +86,11 @@ class BIP32Kdx extends BIP32 {
         throw ArgumentError("Invalid private key");
       }
       Uint8List k = buffer.sublist(46, 78);
-      hd = BIP32Kdx.fromPrivateKey(k, chainCode, network);
+      hd = BIP32Desktop.fromPrivateKey(k, chainCode, network);
     } else {
       // 33 bytes: public key data (0x02 + X or 0x03 + X)
       Uint8List X = buffer.sublist(45, 78);
-      hd = BIP32Kdx.fromPublicKey(X, chainCode, network);
+      hd = BIP32Desktop.fromPublicKey(X, chainCode, network);
     }
     hd.depth = depth;
     hd.index = index;
@@ -98,7 +98,7 @@ class BIP32Kdx extends BIP32 {
     return hd;
   }
 
-  factory BIP32Kdx.fromPublicKey(
+  factory BIP32Desktop.fromPublicKey(
     Uint8List publicKey,
     Uint8List chainCode, [
     NetworkType? nw,
@@ -107,10 +107,10 @@ class BIP32Kdx extends BIP32 {
     if (!ecc.isPoint(publicKey)) {
       throw ArgumentError("Point is not on the curve");
     }
-    return BIP32Kdx(null, publicKey, chainCode, network);
+    return BIP32Desktop(null, publicKey, chainCode, network);
   }
 
-  factory BIP32Kdx.fromPrivateKey(
+  factory BIP32Desktop.fromPrivateKey(
     Uint8List privateKey,
     Uint8List chainCode, [
     NetworkType? nw,
@@ -124,10 +124,10 @@ class BIP32Kdx extends BIP32 {
     if (!ecc.isPrivate(privateKey)) {
       throw ArgumentError("Private key not in range [1, n]");
     }
-    return BIP32Kdx(privateKey, null, chainCode, network);
+    return BIP32Desktop(privateKey, null, chainCode, network);
   }
 
-  factory BIP32Kdx.fromSeed(Uint8List seed, [NetworkType? nw]) {
+  factory BIP32Desktop.fromSeed(Uint8List seed, [NetworkType? nw]) {
     if (seed.length < 16) {
       throw ArgumentError("Seed should be at least 128 bits");
     }
@@ -138,6 +138,6 @@ class BIP32Kdx extends BIP32 {
     final i = hmacSHA512(utf8.encode("Bitcoin seed"), seed);
     final il = i.sublist(0, 32);
     final ir = i.sublist(32);
-    return BIP32Kdx.fromPrivateKey(il, ir, network);
+    return BIP32Desktop.fromPrivateKey(il, ir, network);
   }
 }

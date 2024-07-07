@@ -12,16 +12,13 @@ import '../l10n/l10n.dart';
 import '../settings/available_currency.dart';
 import '../settings/available_language.dart';
 import '../settings/available_themes.dart';
-import '../settings/setting_item.dart';
 import '../settings_advanced/advanced_menu.dart';
 import '../util/platform.dart';
-import '../util/util.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/dialog.dart';
 import '../widgets/gradient_widgets.dart';
 import '../widgets/sheet_util.dart';
 import 'accounts_area.dart';
-import 'buy_sheet.dart';
 import 'currency_dialog.dart';
 import 'donate_menu.dart';
 import 'double_line_item.dart';
@@ -398,21 +395,6 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                                 widget: SeedBackupSheet(mnemonic: mnemonic!),
                               );
                             }
-                          },
-                        ),
-                      ],
-                      if (network == SpectreNetwork.mainnet) ...[
-                        Divider(height: 2, color: theme.text15),
-                        DoubleLineItem(
-                          heading: l10n.buySpectreTitle,
-                          defaultMethod: BuySettingItem(),
-                          icon: Icons.currency_exchange,
-                          onPressed: () {
-                            Sheets.showAppHeightNineSheet(
-                              context: context,
-                              theme: theme,
-                              widget: const BuySheet(),
-                            );
                           },
                         ),
                       ],

@@ -183,7 +183,7 @@ class HdWalletLegacy extends HdWallet {
   late final BIP32 _bip32;
 
   HdWalletLegacy(Uint8List seed) : super._() {
-    _bip32 = BIP32Kdx.fromSeed(seed);
+    _bip32 = BIP32Desktop.fromSeed(seed);
   }
 
   @override

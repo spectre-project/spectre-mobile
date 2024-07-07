@@ -4,13 +4,13 @@ import 'package:flutter/services.dart';
 import 'base_theme.dart';
 
 class SpectrumDarkTheme extends BaseTheme {
-  static const brightRed = Color.fromRGBO(255, 0, 90, 1.0);
+  static const brightRed = Color.fromRGBO(199, 0, 70, 1);
 
   //static const red = Color(0xfffc865a);
   static const red = Color.fromARGB(255, 231, 218, 218);
 
   //static const redDark = Color(0xfffc865a);
-  static const redDark = Color.fromRGBO(255, 0, 90, 1.0);
+  static const redDark = Color.fromRGBO(199, 0, 70, 1);
 
   static const midnightDark = Color.fromARGB(255, 0, 0, 0);
 

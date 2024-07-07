@@ -291,7 +291,7 @@
   "importOption24WordsTitle": "יבוא ביטוי סודי של 24 מילים",
   "importOption24WordsDescription": "תואם עם Cli Wallet ו- Ledger",
   "importOption12WordsTitle": "ייבוא ​​ביטוי סודי של 12 מילים",
-  "importOption12WordsDescription": "תואם עם ארנק Web ו-KDX",
+  "importOption12WordsDescription": "תואם עם ארנק Web ו-Spectre Desktop",
   "importOptionKpubTitle": "ייבוא ארנק צפייה בלבד",
   "importOptionKpubDescription": "עקוב אחר היתרה והעסקאות של ארנק באמצעות מפתח ציבורי מורחב",
   "importKpub": "ייבוא ארנק צפייה בלבד",

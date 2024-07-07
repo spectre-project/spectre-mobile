@@ -5,13 +5,13 @@ import 'base_theme.dart';
 
 class SpectrumLightTheme extends BaseTheme {
   //static const deepRed = Color(0xFF009688);
-  static const deepRed = Color.fromRGBO(255, 0, 90, 1.0);
+  static const deepRed = Color.fromRGBO(199, 0, 70, 1);
 
   //static const red = Color(0xFF009688);
-  static const red = Color.fromRGBO(255, 0, 90, 1.0);
+  static const red = Color.fromRGBO(199, 0, 70, 1);
 
   //static const redLight = Color(0xFF9EEDD4);
-  static const redLight = Color.fromRGBO(255, 0, 90, 1.0);
+  static const redLight = Color.fromRGBO(199, 0, 70, 1);
 
   static const white = Color(0xFFFFFFFF);
 
