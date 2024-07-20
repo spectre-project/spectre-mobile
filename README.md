@@ -1,7 +1,7 @@
 ## What is Spectrum?
 
-[![Latest Release](https://img.shields.io/github/v/release/x100111010/spectre-mobile?display_name=tag&style=flat-square)](https://github.com/x100111010/spectre-mobile/releases)
-[![Downloads Latest](https://img.shields.io/github/downloads/x100111010/spectre-mobile/latest/total?style=flat-square)](https://github.com/x100111010/spectre-mobile/releases/latest)
+[![Latest Release](https://img.shields.io/github/v/release/spectre-project/spectre-mobile?display_name=tag&style=flat-square)](https://github.com/spectre-project/spectre-mobile/releases)
+[![Downloads Latest](https://img.shields.io/github/downloads/spectre-project/spectre-mobile/latest/total?style=flat-square)](https://github.com/spectre-project/spectre-mobile/releases/latest)
 
 [![Discord](https://dcbadge.limes.pink/api/server/https://discord.gg/FZPYpwszcF)](https://discord.gg/FZPYpwszcF)
 [![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/Spectre_Network)
