@@ -58,6 +58,6 @@ Some hints to the table above:
 
 ## How to contribute
 
-The whole translation effort is coordinated by the Karlsen Network
+The whole translation effort is coordinated by the Spectre Network
 developers. If you like to add another language, feel free to get
 in touch at our [Discord](https://discord.spectre-network.org/).

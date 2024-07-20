@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.spectrum.spectrumwallet"
+    package="spectrum.spectre_mobile_wallet"
     android:installLocation="auto"
     >
 

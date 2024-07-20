@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help improve spectrum_wallet
+about: Create a report to help improve Spectrum_Wallet
 title: ''
 labels: ''
 assignees: ''

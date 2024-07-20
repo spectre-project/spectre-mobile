@@ -1,3 +1,14 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+        maven {
+            url = uri("$rootDir/../local_flutter_plugin_repo")
+        }
+    }
+}
+
 include ':app'
 
 def localPropertiesFile = new File(rootProject.projectDir, "local.properties")

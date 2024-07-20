@@ -93,7 +93,7 @@ final addressPrefixProvider = Provider((ref) {
 final _spectreApiProvider = Provider<SpectreApi>((ref) {
   final network = ref.watch(networkProvider);
   if (network == SpectreNetwork.mainnet) {
-    return SpectreApiMainnet('https://api.spectre.org');
+    return SpectreApiMainnet('https://api.spectre-network.org');
   }
   return SpectreApiEmpty();
 });

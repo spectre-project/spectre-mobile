@@ -6,12 +6,15 @@ import 'package:share_plus/share_plus.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../contacts/contact_labels.dart';
 import '../contacts/contacts_widget.dart';
 import '../spectre/spectre.dart';
 import '../l10n/l10n.dart';
+import '../send_sheet/send_sheet.dart';
 import '../settings/available_currency.dart';
 import '../settings/available_language.dart';
 import '../settings/available_themes.dart';
+import '../settings/setting_item.dart';
 import '../settings_advanced/advanced_menu.dart';
 import '../util/platform.dart';
 import '../widgets/app_simpledialog.dart';
@@ -20,7 +23,6 @@ import '../widgets/gradient_widgets.dart';
 import '../widgets/sheet_util.dart';
 import 'accounts_area.dart';
 import 'currency_dialog.dart';
-import 'donate_menu.dart';
 import 'double_line_item.dart';
 import 'language_dialog.dart';
 import 'network_menu.dart';
@@ -50,14 +52,10 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
   late final AnimationController _advancedController;
   late final Animation<Offset> _advancedOffsetFloat;
 
-  late final AnimationController _donateController;
-  late final Animation<Offset> _donateOffsetFloat;
-
   bool _securityOpen = false;
   bool _contactsOpen = false;
   bool _networkOpen = false;
   bool _advancedOpen = false;
-  bool _donateOpen = false;
 
   @override
   void initState() {
@@ -84,11 +82,6 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       vsync: this,
       duration: const Duration(milliseconds: 220),
     );
-    // For donate menu
-    _donateController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 220),
-    );
 
     final beginOffset = const Offset(1.1, 0);
     final endOffset = const Offset(0, 0);
@@ -108,10 +101,6 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       begin: beginOffset,
       end: endOffset,
     ).animate(_advancedController);
-    _donateOffsetFloat = Tween<Offset>(
-      begin: beginOffset,
-      end: endOffset,
-    ).animate(_donateController);
   }
 
   @override
@@ -120,7 +109,6 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
     _securityController.dispose();
     _networkController.dispose();
     _advancedController.dispose();
-    _donateController.dispose();
 
     super.dispose();
   }
@@ -171,11 +159,6 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
     } else if (_advancedOpen) {
       setState(() => _advancedOpen = false);
       _advancedController.reverse();
-    } else if (_donateOpen) {
-      setState(() => _donateOpen = false);
-      _donateController.reverse();
-    } else if (!didPop) {
-      Navigator.of(context).pop();
     }
   }
 
@@ -184,7 +167,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
     // Drawer in flutter doesn't have a built-in way to push/pop elements
     // on top of it like our Android counterpart. So we can override back button
     // presses and replace the main settings widget with contacts based on a bool
-    return PopScope(
+   return PopScope(
       canPop: false,
       onPopInvoked: _onBackButtonPressed,
       child: ClipRect(
@@ -224,13 +207,6 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
               _advancedController.reverse();
             }),
           ),
-          SlideTransition(
-            position: _donateOffsetFloat,
-            child: DonateMenu(onBackAction: () {
-              setState(() => _donateOpen = false);
-              _donateController.reverse();
-            }),
-          ),
         ]),
       ),
     );
@@ -245,10 +221,6 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       final network = ref.watch(networkProvider);
       final wallet = ref.watch(walletProvider);
       final hasMnemonic = ref.watch(walletHasMnemonic);
-
-      final canDonate = !kPlatformIsIOS &&
-          network == SpectreNetwork.mainnet &&
-          !wallet.isViewOnly;
 
       return Container(
         decoration: BoxDecoration(color: theme.backgroundDark),
@@ -289,7 +261,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                         return DoubleLineItem(
                           heading: l10n.language,
                           defaultMethod: ref.watch(languageProvider),
-                          icon: Icons.translate,
+                          icon: AppIcons.language,
                           onPressed: _showLanguageDialog,
                         );
                       }),
@@ -395,6 +367,30 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                                 widget: SeedBackupSheet(mnemonic: mnemonic!),
                               );
                             }
+                          },
+                        ),
+                      ],
+                      if (!kPlatformIsIOS &&
+                          network == SpectreNetwork.mainnet &&
+                          !wallet.isViewOnly) ...[
+                        Divider(height: 2, color: theme.text15),
+                        DoubleLineItem(
+                          heading: l10n.donate,
+                          defaultMethod: DonateSettingItem(),
+                          icon: Icons.handshake_rounded,
+                          onPressed: () {
+                            final uri = SpectreUri(
+                              address:
+                                  Address.decodeAddress(kSpectreDevFundAddress),
+                            );
+                            Sheets.showAppHeightNineSheet(
+                              context: context,
+                              theme: theme,
+                              widget: SendSheet(
+                                title: l10n.donate.toUpperCase(),
+                                uri: uri,
+                              ),
+                            );
                           },
                         ),
                       ],

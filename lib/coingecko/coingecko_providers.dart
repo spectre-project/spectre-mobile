@@ -32,11 +32,7 @@ final _spectrePriceRemoteProvider = FutureProvider<CoinGeckoPrice>((ref) async {
   }
 
   try {
-    var price = await getCoinGeckoApiPrice(fiat);
-    // fallback to Spectrum API if CoinGecko API fails
-    if (price == null) {
-      price = await getSpectrumApiPrice(fiat);
-    }
+    final price = await getCoinGeckoApiPrice(fiat);
     if (price == null) {
       throw Exception('Failed to fetch remote exchange rate');
     }

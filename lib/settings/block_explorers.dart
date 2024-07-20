@@ -30,7 +30,7 @@ class BlockExplorer with _$BlockExplorer {
 const kSpectreExplorerMainnet = BlockExplorer(
   network: SpectreNetwork.mainnet,
   name: 'Spectre Explorer',
-  url: 'explorer.karlsencoin.com',
+  url: 'explorer.spectre-network.org',
   addressUrl: 'https://explorer.spectre-network.org/addresses/$kParamPattern',
   txUrl: 'https://explorer.spectre-network.org/txs/$kParamPattern',
 );

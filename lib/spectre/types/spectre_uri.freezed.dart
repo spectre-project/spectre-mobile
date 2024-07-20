@@ -65,8 +65,8 @@ class _$SpectreUriParamCopyWithImpl<$Res, $Val extends SpectreUriParam>
 /// @nodoc
 abstract class _$$SpectreUriParamImplCopyWith<$Res>
     implements $SpectreUriParamCopyWith<$Res> {
-  factory _$$SpectreUriParamImplCopyWith(
-          _$SpectreUriParamImpl value, $Res Function(_$SpectreUriParamImpl) then) =
+  factory _$$SpectreUriParamImplCopyWith(_$SpectreUriParamImpl value,
+          $Res Function(_$SpectreUriParamImpl) then) =
       __$$SpectreUriParamImplCopyWithImpl<$Res>;
   @override
   @useResult
@@ -132,7 +132,8 @@ class _$SpectreUriParamImpl extends _SpectreUriParam {
   @override
   @pragma('vm:prefer-inline')
   _$$SpectreUriParamImplCopyWith<_$SpectreUriParamImpl> get copyWith =>
-      __$$SpectreUriParamImplCopyWithImpl<_$SpectreUriParamImpl>(this, _$identity);
+      __$$SpectreUriParamImplCopyWithImpl<_$SpectreUriParamImpl>(
+          this, _$identity);
 }
 
 abstract class _SpectreUriParam extends SpectreUriParam {
@@ -166,7 +167,8 @@ mixin _$SpectreUri {
 
 /// @nodoc
 abstract class $SpectreUriCopyWith<$Res> {
-  factory $SpectreUriCopyWith(SpectreUri value, $Res Function(SpectreUri) then) =
+  factory $SpectreUriCopyWith(
+          SpectreUri value, $Res Function(SpectreUri) then) =
       _$SpectreUriCopyWithImpl<$Res, SpectreUri>;
   @useResult
   $Res call(

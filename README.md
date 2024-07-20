@@ -1,5 +1,11 @@
 ## What is Spectrum?
 
+[![Latest Release](https://img.shields.io/github/v/release/x100111010/spectre-mobile?display_name=tag&style=flat-square)](https://github.com/x100111010/spectre-mobile/releases)
+[![Downloads Latest](https://img.shields.io/github/downloads/x100111010/spectre-mobile/latest/total?style=flat-square)](https://github.com/x100111010/spectre-mobile/releases/latest)
+
+[![Discord](https://dcbadge.limes.pink/api/server/https://discord.gg/FZPYpwszcF)](https://discord.gg/FZPYpwszcF)
+[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/Spectre_Network)
+
 Spectrum is a non-custodial wallet for the [Spectre Network](https://spectre-network.org/)
 BlockDAG, available for Android and iOS. It is written in
 [Dart](https://dart.dev) using [Flutter](https://flutter.dev).
@@ -41,7 +47,13 @@ For some details regarding translations, have a look at
 
 ## Have a question?
 
-If you need any help, feel free to [file a feature request or an issue](https://github.com/x100111010/spectre-mobile/issues) if you do not manage to find a solution.
+If you need any help, feel free to [file a feature request or an issue](https://github.com/spectre-project/spectre-mobile/issues) if you do not manage to find a solution.
+
+## Screenshots
+
+| ![](assets/images/a1.png) | ![](assets/images/a2.png) | ![](assets/images/a3.png) |
+|---------------------------|---------------------------|---------------------------|
+| ![](assets/images/b1.png) | ![](assets/images/b2.png) | ![](assets/images/b3.png) |
 
 ## License
 

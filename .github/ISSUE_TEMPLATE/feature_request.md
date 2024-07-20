@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for kaspian_wallet
+about: Suggest an idea for Spectrum_Wallet
 title: ''
 labels: ''
 assignees: ''

@@ -7,7 +7,7 @@ import 'contact_labels.dart';
 
 const defaultContacts = {
   'spectre:qrxf48dgrdkjxllxczek3uweuldtan9nanzjsavk0ak9ynwn0zsayjjh7upez':
-      '@SpectrumTeam',
+      '@Spectre Network Devfund',
 };
 
 class ContactsNotifier extends ChangeNotifier {
