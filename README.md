@@ -54,6 +54,7 @@ If you need any help, feel free to [file a feature request or an issue](https://
 | ![](assets/images/a1.png) | ![](assets/images/a2.png) | ![](assets/images/a3.png) |
 |---------------------------|---------------------------|---------------------------|
 | ![](assets/images/b1.png) | ![](assets/images/b2.png) | ![](assets/images/b3.png) |
+| ![](assets/images/c1.png) | ![](assets/images/c2.png) | ![](assets/images/c3.png) |
 
 ## License
 
