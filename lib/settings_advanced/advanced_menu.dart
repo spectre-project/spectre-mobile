@@ -11,6 +11,7 @@ import '../widgets/app_icon_button.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/gradient_widgets.dart';
 import '../widgets/sheet_util.dart';
+import '../widgets/mining_reward_calculator_widget.dart';
 import 'address_discovery_dialog.dart';
 import 'compound_utxos_dialog.dart';
 import 'kpub_sheet.dart';
@@ -158,6 +159,21 @@ class AdvancedMenu extends ConsumerWidget {
                       ),
                       Divider(height: 2, color: theme.text15),
                       const TxFilterSettings(),
+                      Divider(height: 2, color: theme.text15),
+                      // Add Mining Reward Calculator
+                      DoubleLineItemTwo(
+                        heading: 'Mining Reward Calculator',
+                        text: 'Calculate your mining rewards',
+                        icon: Icons.calculate,
+                        iconSize: 28,
+                        onPressed: () {
+                          Sheets.showAppHeightNineSheet(
+                            context: context,
+                            widget: MiningRewardCalculatorWidget(),
+                            theme: theme,
+                          );
+                        },
+                      ),
                     ],
                   ),
                   const ListBottomGradient(),
