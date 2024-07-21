@@ -282,4 +282,66 @@ class SpectreApiMainnet implements SpectreApi {
       );
     }
   }
+
+  // methods for network statistics
+  Future<double> getHashrate() async {
+    final url = '$baseUrl/info/hashrate?stringOnly=false';
+
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode != 200) {
+      throw Exception('Failed to get hashrate');
+    }
+
+    final data = json.decode(response.body);
+    return data['hashrate'] * 1e6; // Convert to MH/s
+  }
+
+  Future<double> getMaxSupply() async {
+    final url = '$baseUrl/info/coinsupply/max';
+
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode != 200) {
+      throw Exception('Failed to get max supply');
+    }
+
+    return double.parse(response.body);
+  }
+
+  Future<double> getCirculatingSupply() async {
+    final url = '$baseUrl/info/coinsupply/circulating?in_billion=false';
+
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode != 200) {
+      throw Exception('Failed to get circulating supply');
+    }
+
+    return double.parse(response.body) / 1e6; // Convert to million
+  }
+
+  Future<double> getBlockReward() async {
+    final url = '$baseUrl/info/blockreward?stringOnly=false';
+
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode != 200) {
+      throw Exception('Failed to get block reward');
+    }
+
+    final data = json.decode(response.body);
+    return data['blockreward'];
+  }
+
+  Future<Map<String, dynamic>> getHalvingInfo() async {
+    final url = '$baseUrl/info/halving';
+
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode != 200) {
+      throw Exception('Failed to get halving info');
+    }
+
+    final data = json.decode(response.body);
+    return {
+      'nextHalvingDate': data['nextHalvingDate'],
+      'nextHalvingAmount': data['nextHalvingAmount']
+    };
+  }
 }

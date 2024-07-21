@@ -99,4 +99,19 @@ class SpectreApiEmpty implements SpectreApi {
   }) async {
     return [];
   }
+
+  // methods for network statistics
+  Future<double> getHashrate() async => 0.0;
+
+  Future<double> getMaxSupply() async => 0.0;
+
+  Future<double> getCirculatingSupply() async => 0.0;
+
+  Future<double> getBlockReward() async => 0.0;
+
+  Future<Map<String, dynamic>> getHalvingInfo() async => {
+        'nextHalvingTimestamp': 0,
+        'nextHalvingDate': '',
+        'nextHalvingAmount': 0.0,
+      };
 }
