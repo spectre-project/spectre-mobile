@@ -7,6 +7,7 @@ import 'setting_item.dart';
 enum ThemeOptions {
   SPECTRUM_DARK,
   SPECTRUM_LIGHT,
+  SPECTRUM_AMOLED_DARK,
 }
 
 class ThemeSetting extends SettingSelectionItem {
@@ -22,6 +23,8 @@ class ThemeSetting extends SettingSelectionItem {
         return l10n.themeLight;
       case ThemeOptions.SPECTRUM_DARK:
         return l10n.themeDark;
+      case ThemeOptions.SPECTRUM_AMOLED_DARK:
+        return l10n.themeAMOLEDDark;
     }
   }
 
@@ -31,6 +34,8 @@ class ThemeSetting extends SettingSelectionItem {
         return SpectrumLightTheme();
       case ThemeOptions.SPECTRUM_DARK:
         return SpectrumDarkTheme();
+      case ThemeOptions.SPECTRUM_AMOLED_DARK:
+        return SpectrumAMOLEDDarkTheme();
     }
   }
 

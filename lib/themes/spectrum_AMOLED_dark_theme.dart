@@ -3,14 +3,14 @@ import 'package:flutter/services.dart';
 
 import 'base_theme.dart';
 
-class SpectrumDarkTheme extends BaseTheme {
+class SpectrumAMOLEDDarkTheme extends BaseTheme {
   //static const red = Color(0xfffc865a);
   static const red = Color.fromARGB(255, 231, 218, 218);
 
   //static const redDark = Color(0xfffc865a);
   static const redDark = Color.fromRGBO(199, 0, 70, 1);
 
-  static const primarydark = Color.fromARGB(255, 18, 18, 18);
+  static const midnightDark = Color.fromARGB(255, 0, 0, 0);
 
   static const white = Color(0xffffffff);
 
@@ -34,14 +34,14 @@ class SpectrumDarkTheme extends BaseTheme {
   Color successDark = redDark;
   Color successDark30 = redDark.withOpacity(0.3);
 
-  Color background = primarydark;
-  Color background40 = primarydark.withOpacity(0.4);
-  Color background00 = primarydark.withOpacity(0.0);
+  Color background = midnightDark;
+  Color background40 = midnightDark.withOpacity(0.4);
+  Color background00 = midnightDark.withOpacity(0.0);
 
-  Color backgroundDark = primarydark;
-  Color backgroundDark00 = primarydark.withOpacity(0.0);
+  Color backgroundDark = midnightDark;
+  Color backgroundDark00 = midnightDark.withOpacity(0.0);
 
-  Color backgroundDarkest = primarydark;
+  Color backgroundDarkest = midnightDark;
 
   Color text = white.withOpacity(0.9);
   Color text60 = white.withOpacity(0.6);
