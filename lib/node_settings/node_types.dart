@@ -9,7 +9,7 @@ part 'node_types.freezed.dart';
 part 'node_types.g.dart';
 
 const mainnetNodeConfig = NodeConfig(
-  id: '467af0cb-055c-4d32-8d29-123506c7ed6e',
+  id: 'd093b14d-da55-4e49-870d-61d63bf201a3',
   name: 'Spectrum Official',
   urls: ['node.spectre-network.org'],
   isSecure: true,

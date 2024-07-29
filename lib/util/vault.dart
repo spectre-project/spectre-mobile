@@ -5,7 +5,7 @@ import '../util/random_util.dart';
 class Vault {
   static const _pinKey = 'fspectrum_pin';
   static const _sessionKey = 'fspectrum_session';
-  static const _dbKey = 'aa721440b4f52bca';
+  static const _dbKey = 'pio5kbzto0obf5t5';
 
   final _secureStorage = const FlutterSecureStorage();
 
