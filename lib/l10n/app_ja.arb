@@ -17,7 +17,7 @@
   "addressCopied": "アドレスをコピーしました",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "アドレスを入力",
-  "addressMising": "アドレスを入力してください",
+  "addressMissing": "アドレスを入力してください",
   "addressShare": "アドレスを共有する",
   "advancedHeader": "Advanced",
   "amount": "Amount",

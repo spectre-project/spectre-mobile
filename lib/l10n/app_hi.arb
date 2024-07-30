@@ -17,7 +17,7 @@
   "addressCopied": "एड्रेस कॉपी हो गया है",
   "addressCopiedFailed": "एड्रेस कॉपी करने में विफल",
   "addressHint": "एड्रेस दर्ज करें",
-  "addressMising": "कृपया एक एड्रेस डालें",
+  "addressMissing": "कृपया एक एड्रेस डालें",
   "addressShare": "एड्रेस शेयर करें",
   "advancedHeader": "विकसित",
   "amount": "मात्रा",

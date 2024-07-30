@@ -17,7 +17,7 @@
   "addressCopied": "Адресу скопійовано",
   "addressCopiedFailed": "Не вдалося скопіювати адресу",
   "addressHint": "Введіть адресу",
-  "addressMising": "Будь-ласка, введіть адресу",
+  "addressMissing": "Будь-ласка, введіть адресу",
   "addressShare": "Поділитися адресою",
   "advancedHeader": "Додаткові налаштування",
   "amount": "Сума",

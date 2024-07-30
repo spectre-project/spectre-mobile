@@ -17,7 +17,7 @@
   "addressCopied": "Адрес скопирован",
   "addressCopiedFailed": "Не удалось скопировать адрес",
   "addressHint": "Введите адрес",
-  "addressMising": "Пожалуйста, введите адрес",
+  "addressMissing": "Пожалуйста, введите адрес",
   "addressShare": "Поделиться адресом",
   "advancedHeader": "Дополнительно",
   "amount": "Количество",

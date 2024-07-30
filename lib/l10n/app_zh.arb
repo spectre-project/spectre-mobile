@@ -17,7 +17,7 @@
   "addressCopied": "地址已复制",
   "addressCopiedFailed": "复制地址失败",
   "addressHint": "输入地址",
-  "addressMising": "请输入地址",
+  "addressMissing": "请输入地址",
   "addressShare": "分享地址",
   "advancedHeader": "高级",
   "amount": "数额",

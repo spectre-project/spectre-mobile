@@ -17,7 +17,7 @@
   "addressCopied": "כתובת הועתקה",
   "addressCopiedFailed": "נכשל להעתיק את הכתובת",
   "addressHint": "הזן כתובת",
-  "addressMising": "אנא הזן כתובת",
+  "addressMissing": "אנא הזן כתובת",
   "addressShare": "שתף כתובת",
   "advancedHeader": "מתקדם ",
   "amount": "סכום ",

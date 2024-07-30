@@ -17,7 +17,7 @@
   "addressCopied": "చిరునామా కాపీ చేయబడింది",
   "addressCopiedFailed": "చిరునామాను కాపీ చేయడంలో విఫలమైంది",
   "addressHint": "ఎంటర్ చిరునామా",
-  "addressMising": "దయచేసి చిరునామాను నమోదు చేయండి",
+  "addressMissing": "దయచేసి చిరునామాను నమోదు చేయండి",
   "addressShare": "చిరునామాను పంచుకోండి",
   "advancedHeader": "ఆధునిక",
   "amount": "మొత్తం",

@@ -17,7 +17,7 @@
   "addressCopied": "آدرس کپی شد",
   "addressCopiedFailed": "آدرس کپی نشد",
   "addressHint": "آدرس را وارد کنید",
-  "addressMising": "لطفا یک آدرس را وارد کنید",
+  "addressMissing": "لطفا یک آدرس را وارد کنید",
   "addressShare": "به اشتراک گذاری آدرس",
   "advancedHeader": "پیشرفته",
   "amount": "مقدار",

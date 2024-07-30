@@ -17,7 +17,7 @@
   "addressCopied": "Adresse kopiert",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "Angi adresse",
-  "addressMising": "Angi en adresse",
+  "addressMissing": "Angi en adresse",
   "addressShare": "Del adresse",
   "advancedHeader": "Avansert",
   "amount": "Beløp",

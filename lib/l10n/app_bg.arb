@@ -17,7 +17,7 @@
   "addressCopied": "Адрес копиран",
   "addressCopiedFailed": "Неуспешно копиране на адрес",
   "addressHint": "Въведете адрес",
-  "addressMising": "Моля въведете адрес",
+  "addressMissing": "Моля въведете адрес",
   "addressShare": "Сподели адрес",
   "advancedHeader": "Разширени",
   "amount": "Сума",

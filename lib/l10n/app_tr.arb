@@ -17,7 +17,7 @@
   "addressCopied": "Adres Kopyalandı",
   "addressCopiedFailed": "Adres kopyalanamadı",
   "addressHint": "Adres Gir",
-  "addressMising": "Lütfen Bir Adres Girin",
+  "addressMissing": "Lütfen Bir Adres Girin",
   "addressShare": "Adresi Paylaş",
   "advancedHeader": "Gelişmiş",
   "amount": "Miktar",

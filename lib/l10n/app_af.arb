@@ -17,7 +17,7 @@
   "addressCopied": "Address Copied",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "Enter Address",
-  "addressMising": "Please Enter an Address",
+  "addressMissing": "Please Enter an Address",
   "addressShare": "Share Address",
   "advancedHeader": "Advanced",
   "amount": "Amount",

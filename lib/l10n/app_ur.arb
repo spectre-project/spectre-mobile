@@ -17,7 +17,7 @@
   "addressCopied": "پتہ کاپی کر دیا گیا ہے",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "پتہ درج کریں",
-  "addressMising": "براہ کرم ایک پتہ درج کریں",
+  "addressMissing": "براہ کرم ایک پتہ درج کریں",
   "addressShare": "پتہ شیئر کریں",
   "advancedHeader": "اعلی درجے",
   "amount": "رقم",

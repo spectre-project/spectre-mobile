@@ -17,7 +17,7 @@
   "addressCopied": "Adrese nokopēta",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "Enter Address",
-  "addressMising": "Lūdzu ievadiet adresi",
+  "addressMissing": "Lūdzu ievadiet adresi",
   "addressShare": "Kopīgot adresi",
   "advancedHeader": "Advanced",
   "amount": "Amount",

@@ -17,7 +17,7 @@ dependencies:
   flutter_secure_storage: ^9.2.2
   shared_preferences: 2.2.3
   package_info_plus: ^8.0.0
-  device_info_plus: 10.1.0
+  device_info_plus: 10.1.1
   json_annotation: ^4.9.0
   intl: 0.19.0
   decimal: ^3.0.2
@@ -27,7 +27,7 @@ dependencies:
   local_auth: 2.2.0
   qr_flutter: 4.1.0
   qr_code_scanner: 1.0.1
-  share_plus: ^9.0.0
+  share_plus: 10.0.0
   file_picker: ^8.0.6
   app_links: ^6.1.4
   http: 1.2.2

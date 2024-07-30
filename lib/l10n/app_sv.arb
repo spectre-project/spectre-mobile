@@ -17,7 +17,7 @@
   "addressCopied": "Adress kopierad",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "Ange adress",
-  "addressMising": "Ange en adress",
+  "addressMissing": "Ange en adress",
   "addressShare": "Dela adress",
   "advancedHeader": "Avancerad ",
   "amount": "Belopp",

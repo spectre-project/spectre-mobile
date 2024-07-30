@@ -17,7 +17,7 @@
   "addressCopied": "주소가 복사되었습니다 ",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "주소를 입력하세요",
-  "addressMising": "주소를 입력하세요",
+  "addressMissing": "주소를 입력하세요",
   "addressShare": "주소 공유하기",
   "advancedHeader": "고급",
   "amount": "금액",

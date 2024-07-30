@@ -17,7 +17,7 @@
   "addressCopied": "Alamat disalinkan",
   "addressCopiedFailed": "Gagal menyalin alamat",
   "addressHint": "Masukkan Alamat",
-  "addressMising": "Sila masukkan destinasi",
+  "addressMissing": "Sila masukkan destinasi",
   "addressShare": "Kongsikan Alamat",
   "advancedHeader": "Maju",
   "amount": "Jumlah",

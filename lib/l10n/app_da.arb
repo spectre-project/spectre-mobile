@@ -17,7 +17,7 @@
   "addressCopied": "Adresse Kopieret",
   "addressCopiedFailed": "Adressen kunne ikke kopieres",
   "addressHint": "Indtast Adresse",
-  "addressMising": "Indtast Venligst en Adresse",
+  "addressMissing": "Indtast Venligst en Adresse",
   "addressShare": "Del Adresse",
   "advancedHeader": "Avanceret",
   "amount": "Beløb",

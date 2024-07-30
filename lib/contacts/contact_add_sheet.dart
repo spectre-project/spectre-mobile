@@ -299,7 +299,7 @@ class _ContactAddSheetState extends ConsumerState<ContactAddSheet> {
       if (_addressController.text.isEmpty) {
         isValid = false;
         setState(() {
-          _addressValidationText = l10n.addressMising;
+          _addressValidationText = l10n.addressMissing;
         });
       } else if (Address.tryParse(_addressController.text,
               expectedPrefix: prefix) ==

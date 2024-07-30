@@ -17,7 +17,7 @@
   "addressCopied": "Adresă copiată",
   "addressCopiedFailed": "Adresa nu a putut fi copiată",
   "addressHint": "Introdu adresa",
-  "addressMising": "Introduceți o Adresă",
+  "addressMissing": "Introduceți o Adresă",
   "addressShare": "Distribuie Adresa",
   "advancedHeader": "Avansat",
   "amount": "Cantitate",

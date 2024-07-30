@@ -17,7 +17,7 @@
   "addressCopied": "Osoite kopioitu",
   "addressCopiedFailed": "Osoitteen kopiointi epäonnistui",
   "addressHint": "Syötä osoite",
-  "addressMising": "Syötä osoite",
+  "addressMissing": "Syötä osoite",
   "addressShare": "Jaa osoite",
   "advancedHeader": "Edistynyt",
   "amount": "Määrä",

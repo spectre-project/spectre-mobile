@@ -17,7 +17,7 @@
   "addressCopied": "Έγινε αντιγραφή της διεύθυνσης",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "Εισαγωγή διεύθυνσης",
-  "addressMising": "Παρακαλώ εισάγετε μια διεύθυνση",
+  "addressMissing": "Παρακαλώ εισάγετε μια διεύθυνση",
   "addressShare": "Κοινοποιήστε μια διεύθυνση",
   "advancedHeader": "Για προχωρημένους",
   "amount": "Ποσό",

@@ -17,7 +17,7 @@
   "addressCopied": "Indirizzo copiato",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "Inserisci indirizzo",
-  "addressMising": "Inserisci un indirizzo",
+  "addressMissing": "Inserisci un indirizzo",
   "addressShare": "Condividi indirizzo",
   "advancedHeader": "Avanzate",
   "amount": "Importo",

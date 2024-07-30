@@ -17,7 +17,7 @@
   "addressCopied": "Adres gekopieerd",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "Voer adres in",
-  "addressMising": "Voer a.u.b. een adres in",
+  "addressMissing": "Voer a.u.b. een adres in",
   "addressShare": "Deel adres",
   "advancedHeader": "Geavanceerd",
   "amount": "Hoeveelheid",

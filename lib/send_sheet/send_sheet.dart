@@ -621,7 +621,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
     bool isContact = addressText.startsWith('@');
     if (addressText.isEmpty) {
       setState(() {
-        _addressValidationText = l10n.addressMising;
+        _addressValidationText = l10n.addressMissing;
         _pasteButtonVisible = true;
       });
       return false;

@@ -17,7 +17,7 @@
   "addressCopied": "ঠিকানা কপি করা হয়েছে",
   "addressCopiedFailed": "ঠিকানা কপি করা ব্যর্থ হয়েছে",
   "addressHint": "ঠিকানা লিখুন",
-  "addressMising": "দয়া করে ঠিকানা লিখুন",
+  "addressMissing": "দয়া করে ঠিকানা লিখুন",
   "addressShare": "ঠিকানা শেয়ার করুন",
   "advancedHeader": "উন্নত স্তরের",
   "amount": "রাশি",

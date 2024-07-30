@@ -17,7 +17,7 @@
   "addressCopied": "Ang Address ay nakopya",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "Ilagay ang Address",
-  "addressMising": "Mangyaring magpasok ng patutunguhan",
+  "addressMissing": "Mangyaring magpasok ng patutunguhan",
   "addressShare": "I-share",
   "advancedHeader": "Advanced",
   "amount": "Amount",

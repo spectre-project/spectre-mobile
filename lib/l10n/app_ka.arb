@@ -17,7 +17,7 @@
   "addressCopied": "მისამართი დაკოპირებულია",
   "addressCopiedFailed": "მისამართის კოპირება ვერ მოხერხდა",
   "addressHint": "შეიყვანეთ მისამართი",
-  "addressMising": "გთხოვთ შეიყვანოთ მისამართი",
+  "addressMissing": "გთხოვთ შეიყვანოთ მისამართი",
   "addressShare": "მისამართის გაზიარება",
   "advancedHeader": "სიღრმისეული",
   "amount": "ოდენობა",

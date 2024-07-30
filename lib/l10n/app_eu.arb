@@ -17,7 +17,7 @@
   "addressCopied": "Helbidea kopiatu da",
   "addressCopiedFailed": "Ezin izan da helbidea kopiatu",
   "addressHint": "Sartu helbidea",
-  "addressMising": "Mesedez, sartu helbide bat",
+  "addressMissing": "Mesedez, sartu helbide bat",
   "addressShare": "Partekatu helbidea",
   "advancedHeader": "Aurreratua",
   "amount": "Kopurua",

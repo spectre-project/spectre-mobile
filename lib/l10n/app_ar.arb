@@ -17,7 +17,7 @@
   "addressCopied": "تم نسخ العنوان",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "أدخل العنوان\n",
-  "addressMising": "يرجى إدخال العنوان",
+  "addressMissing": "يرجى إدخال العنوان",
   "addressShare": "أنشر العنوان",
   "advancedHeader": "Advanced",
   "amount": "Amount",

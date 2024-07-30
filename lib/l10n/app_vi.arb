@@ -17,7 +17,7 @@
   "addressCopied": "Đã sao chép địa chỉ",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "Nhập địa chỉ",
-  "addressMising": "Hãy nhập một địa chỉ",
+  "addressMissing": "Hãy nhập một địa chỉ",
   "addressShare": "Chia sẻ địa chỉ",
   "advancedHeader": "Advanced",
   "amount": "Amount",

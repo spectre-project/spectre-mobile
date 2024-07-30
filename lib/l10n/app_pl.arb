@@ -17,7 +17,7 @@
   "addressCopied": "Skopiowano adres",
   "addressCopiedFailed": "Nie udało się skopiować adresu",
   "addressHint": "Wpisz adres",
-  "addressMising": "Proszę wpisać adres",
+  "addressMissing": "Proszę wpisać adres",
   "addressShare": "Udostępnij adres",
   "advancedHeader": "Zaawansowane",
   "amount": "Kwota",

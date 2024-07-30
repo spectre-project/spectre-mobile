@@ -17,7 +17,7 @@
   "addressCopied": "Cím másolva",
   "addressCopiedFailed": "A cím másolása sikertelen",
   "addressHint": "Cím megadása",
-  "addressMising": "Adj meg egy Spectre címet",
+  "addressMissing": "Adj meg egy Spectre címet",
   "addressShare": "Cím megosztása",
   "advancedHeader": "Haladó",
   "amount": "Összeg",

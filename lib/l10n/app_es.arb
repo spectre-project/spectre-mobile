@@ -17,7 +17,7 @@
   "addressCopied": "Dirección copiada",
   "addressCopiedFailed": "No se ha copiado la dirección",
   "addressHint": "Introducir dirección",
-  "addressMising": "Por favor, introduzca una dirección",
+  "addressMissing": "Por favor, introduzca una dirección",
   "addressShare": "Compartir Dirección",
   "advancedHeader": "Avanzado",
   "amount": "Cantidad",

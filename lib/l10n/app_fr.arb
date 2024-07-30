@@ -17,7 +17,7 @@
   "addressCopied": "Adresse copiée",
   "addressCopiedFailed": "La copie de l'adresse à échoué",
   "addressHint": "Entrer l'adresse",
-  "addressMising": "Veuillez entrer une adresse de destination",
+  "addressMissing": "Veuillez entrer une adresse de destination",
   "addressShare": "Partager",
   "advancedHeader": "Avancé",
   "amount": "Montant",

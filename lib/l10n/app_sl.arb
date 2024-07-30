@@ -17,7 +17,7 @@
   "addressCopied": "Naslov skopiran",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "Enter Address",
-  "addressMising": "Prosim vnesite naslov",
+  "addressMissing": "Prosim vnesite naslov",
   "addressShare": "Deli naslov",
   "advancedHeader": "Advanced",
   "amount": "Amount",

@@ -17,7 +17,7 @@
   "addressCopied": "Adresa zkopírována",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "Zadejte adresu",
-  "addressMising": "Prosím zadejte adresu",
+  "addressMissing": "Prosím zadejte adresu",
   "addressShare": "Sdílet adresu",
   "advancedHeader": "Rozšířené",
   "amount": "Částka",

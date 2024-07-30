@@ -17,7 +17,7 @@
   "addressCopied": "Adreça copiada",
   "addressCopiedFailed": "Failed to copy address",
   "addressHint": "Introduir adreça",
-  "addressMising": "Si us plau, introdueix una adreça",
+  "addressMissing": "Si us plau, introdueix una adreça",
   "addressShare": "Compartir adreça",
   "advancedHeader": "Avançat",
   "amount": "Quantitat",
