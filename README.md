@@ -3,12 +3,17 @@
 [![Latest Release](https://img.shields.io/github/v/release/spectre-project/spectre-mobile?display_name=tag&style=flat-square)](https://github.com/spectre-project/spectre-mobile/releases)
 [![Downloads Latest](https://img.shields.io/github/downloads/spectre-project/spectre-mobile/latest/total?style=flat-square)](https://github.com/spectre-project/spectre-mobile/releases/latest)
 
-[![Discord](https://dcbadge.limes.pink/api/server/https://discord.gg/FZPYpwszcF)](https://discord.gg/FZPYpwszcF)
-[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/Spectre_Network)
-
 Spectrum is a non-custodial wallet for the [Spectre Network](https://spectre-network.org/)
 BlockDAG, available for Android and iOS. It is written in
 [Dart](https://dart.dev) using [Flutter](https://flutter.dev).
+
+## Features
+
+* **Wallet Import:** Import 12 and 24-word wallets.
+* **Real-Time Network Stats:** Monitor network statistics directly from the network menu.
+* **Mining Reward Calculator:** Access a mining reward calculator in the advanced menu.
+* **CSV Export:** Export your transactions as CSV files from the advanced menu.
+* **Theme Options:** Choose between Light, Dark, and AMOLED Dark themes.
 
 ## Contributing
 
@@ -18,24 +23,38 @@ BlockDAG, available for Android and iOS. It is written in
 
 ## Building
 
-Android: 
+### Android:
+To build the APK for Android, use the following command:
 ```bash
 flutter build apk
 ```
+This command compiles the app into a single universal APK compatible with all device architectures.
 
-iOS: 
+For generating APKs for specific device architectures, use:
+```bash
+flutter build apk --split-per-abi
+```
+This will create separate APKs for different ABIs (Application Binary Interfaces), allowing users to download only the APK suitable for their device, reducing the overall download size.
+
+### iOS:
+To build the app for iOS, use:
 ```bash
 flutter build ios
 ```
+This command compiles the app for iOS devices.
 
-If you have a connected device or emulator you can run the app right from your development machine.
+### Running the App:
+If you have a connected device or emulator, you can run the app directly from your development machine.
 
-Debug mode:
+#### Debug Mode:
+To run the app in debug mode, use:
 ```bash
 flutter run
-``` 
+```
+This mode is useful for development and testing, providing hot reload and detailed error messages.
 
-Release mode:
+#### Release Mode:
+To run the app in release mode, use:
 ```bash
 flutter run --release
 ```
