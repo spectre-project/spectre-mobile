@@ -32,14 +32,13 @@ jobs:
           dart run build_runner build --delete-conflicting-outputs
           flutter build apk --split-per-abi
 
-          # Rename output APKs with Release Tag
+          # 'bin' directory to store and upload the renamed APKs
           mkdir bin
+
+          # Rename output APKs with Release Tag
           mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-arm64-v8a-release.apk
           mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-armeabi-v7a-release.apk
           mv build/app/outputs/flutter-apk/app-x86_64-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-x86_64-release.apk
-
-          # Clean
-          rm build/app/outputs/flutter-apk/*
 
       - name: Build Universal Android APK
         run: |
@@ -47,9 +46,6 @@ jobs:
 
           # Rename Universal APK with Release Tag
           mv build/app/outputs/flutter-apk/app-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-universal.apk
-
-          # Clean
-          rm build/app/outputs/flutter-apk/*
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
