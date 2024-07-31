@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
@@ -16,32 +16,41 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
+          flutter-version: 3.22.3
+      - run: flutter --version
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
-
-      - name: Install dependencies
-        run: flutter pub get
-
-      - name: Run code generation
-        run: dart run build_runner build --delete-conflicting-outputs
-
-      - name: Build Android APK
-        run: |
-          flutter build apk
-          flutter build apk --split-per-abi
+          cache: 'gradle'
       
-      - name: Rename output APKs with Release Tag
+      - name: Build Android with ABI splits
         run: |
+          flutter pub get
+          dart run build_runner build --delete-conflicting-outputs
+          flutter build apk --split-per-abi
+
+          # Rename output APKs with Release Tag
           mkdir bin
-          mv build/app/outputs/flutter-apk/app-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-universal.apk
           mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-arm64-v8a-release.apk
           mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-armeabi-v7a-release.apk
           mv build/app/outputs/flutter-apk/app-x86_64-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-x86_64-release.apk
-          
+
+          # Clean
+          rm build/app/outputs/flutter-apk/*
+
+      - name: Build Universal Android APK
+        run: |
+          flutter build apk
+
+          # Rename Universal APK with Release Tag
+          mv build/app/outputs/flutter-apk/app-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-universal.apk
+
+          # Clean
+          rm build/app/outputs/flutter-apk/*
+
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
         with:

@@ -65,10 +65,29 @@ abstract class SpectreApi {
     Duration retryDelay,
   });
 
-  // methods for network statistics
-  Future<double> getHashrate();
-  Future<double> getMaxSupply();
-  Future<double> getCirculatingSupply();
-  Future<double> getBlockReward();
-  Future<Map<String, dynamic>> getHalvingInfo();
+  // network statistics with retry parameters
+  Future<double> getHashrate({
+    int retryCount,
+    Duration retryDelay,
+  });
+
+  Future<double> getMaxSupply({
+    int retryCount,
+    Duration retryDelay,
+  });
+
+  Future<double> getCirculatingSupply({
+    int retryCount,
+    Duration retryDelay,
+  });
+
+  Future<double> getBlockReward({
+    int retryCount,
+    Duration retryDelay,
+  });
+
+  Future<Map<String, dynamic>> getHalvingInfo({
+    int retryCount,
+    Duration retryDelay,
+  });
 }

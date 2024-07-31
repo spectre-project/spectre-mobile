@@ -100,18 +100,43 @@ class SpectreApiEmpty implements SpectreApi {
     return [];
   }
 
-  // methods for network statistics
-  Future<double> getHashrate() async => 0.0;
+  // network statistics with retry logic
+  Future<double> getHashrate({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
+    return 0.0;
+  }
 
-  Future<double> getMaxSupply() async => 0.0;
+  Future<double> getMaxSupply({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
+    return 0.0;
+  }
 
-  Future<double> getCirculatingSupply() async => 0.0;
+  Future<double> getCirculatingSupply({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
+    return 0.0;
+  }
 
-  Future<double> getBlockReward() async => 0.0;
+  Future<double> getBlockReward({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
+    return 0.0;
+  }
 
-  Future<Map<String, dynamic>> getHalvingInfo() async => {
-        'nextHalvingTimestamp': 0,
-        'nextHalvingDate': '',
-        'nextHalvingAmount': 0.0,
-      };
+  Future<Map<String, dynamic>> getHalvingInfo({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
+    return {
+      'nextHalvingTimestamp': 0,
+      'nextHalvingDate': '',
+      'nextHalvingAmount': 0.0,
+    };
+  }
 }

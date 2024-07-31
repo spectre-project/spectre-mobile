@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-
 import 'spectre_api.dart';
 import 'types.dart';
 
@@ -283,65 +281,140 @@ class SpectreApiMainnet implements SpectreApi {
     }
   }
 
-  // methods for network statistics
-  Future<double> getHashrate() async {
+  // network statistics with retry parameters
+  Future<double> getHashrate({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
     final url = '$baseUrl/info/hashrate?stringOnly=false';
 
-    final response = await http.get(Uri.parse(url));
-    if (response.statusCode != 200) {
-      throw Exception('Failed to get hashrate');
-    }
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode != 200) {
+        throw Exception('Failed to get hashrate');
+      }
 
-    final data = json.decode(response.body);
-    return data['hashrate'] * 1e6; // Convert to MH/s
+      final data = json.decode(response.body);
+      return data['hashrate'] * 1e6; // Convert to MH/s
+    } catch (_) {
+      if (retryCount == 0) {
+        rethrow;
+      }
+
+      await Future.delayed(retryDelay);
+      return getHashrate(
+        retryCount: retryCount - 1,
+        retryDelay: retryDelay,
+      );
+    }
   }
 
-  Future<double> getMaxSupply() async {
+  Future<double> getMaxSupply({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
     final url = '$baseUrl/info/coinsupply/max';
 
-    final response = await http.get(Uri.parse(url));
-    if (response.statusCode != 200) {
-      throw Exception('Failed to get max supply');
-    }
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode != 200) {
+        throw Exception('Failed to get max supply');
+      }
 
-    return double.parse(response.body);
+      return double.parse(response.body);
+    } catch (_) {
+      if (retryCount == 0) {
+        rethrow;
+      }
+
+      await Future.delayed(retryDelay);
+      return getMaxSupply(
+        retryCount: retryCount - 1,
+        retryDelay: retryDelay,
+      );
+    }
   }
 
-  Future<double> getCirculatingSupply() async {
+  Future<double> getCirculatingSupply({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
     final url = '$baseUrl/info/coinsupply/circulating?in_billion=false';
 
-    final response = await http.get(Uri.parse(url));
-    if (response.statusCode != 200) {
-      throw Exception('Failed to get circulating supply');
-    }
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode != 200) {
+        throw Exception('Failed to get circulating supply');
+      }
 
-    return double.parse(response.body) / 1e6; // Convert to million
+      return double.parse(response.body) / 1e6; // Convert to million
+    } catch (_) {
+      if (retryCount == 0) {
+        rethrow;
+      }
+
+      await Future.delayed(retryDelay);
+      return getCirculatingSupply(
+        retryCount: retryCount - 1,
+        retryDelay: retryDelay,
+      );
+    }
   }
 
-  Future<double> getBlockReward() async {
+  Future<double> getBlockReward({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
     final url = '$baseUrl/info/blockreward?stringOnly=false';
 
-    final response = await http.get(Uri.parse(url));
-    if (response.statusCode != 200) {
-      throw Exception('Failed to get block reward');
-    }
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode != 200) {
+        throw Exception('Failed to get block reward');
+      }
 
-    final data = json.decode(response.body);
-    return data['blockreward'];
+      final data = json.decode(response.body);
+      return data['blockreward'];
+    } catch (_) {
+      if (retryCount == 0) {
+        rethrow;
+      }
+
+      await Future.delayed(retryDelay);
+      return getBlockReward(
+        retryCount: retryCount - 1,
+        retryDelay: retryDelay,
+      );
+    }
   }
 
-  Future<Map<String, dynamic>> getHalvingInfo() async {
+  Future<Map<String, dynamic>> getHalvingInfo({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
     final url = '$baseUrl/info/halving';
 
-    final response = await http.get(Uri.parse(url));
-    if (response.statusCode != 200) {
-      throw Exception('Failed to get halving info');
-    }
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode != 200) {
+        throw Exception('Failed to get halving info');
+      }
 
-    final data = json.decode(response.body);
-    return {
-      'nextHalvingDate': data['nextHalvingDate'],
-      'nextHalvingAmount': data['nextHalvingAmount']
-    };
+      final data = json.decode(response.body);
+      return {
+        'nextHalvingDate': data['nextHalvingDate'],
+        'nextHalvingAmount': data['nextHalvingAmount']
+      };
+    } catch (_) {
+      if (retryCount == 0) {
+        rethrow;
+      }
+
+      await Future.delayed(retryDelay);
+      return getHalvingInfo(
+        retryCount: retryCount - 1,
+        retryDelay: retryDelay,
+      );
+    }
   }
 }
