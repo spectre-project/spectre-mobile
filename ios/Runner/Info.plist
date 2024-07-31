@@ -87,7 +87,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>spectrum.spectre_mobile_wallet</string>
+			<string>org.spectre.wallet</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>spectre</string>
@@ -97,7 +97,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>spectrum.spectre_mobile_wallet</string>
+			<string>org.spectre.wallet</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>spectretest</string>
@@ -107,7 +107,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>spectrum.spectre_mobile_wallet</string>
+			<string>org.spectre.wallet</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>spectredev</string>
@@ -117,7 +117,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>spectrum.spectre_mobile_wallet</string>
+			<string>org.spectre.wallet</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>spectresim</string>

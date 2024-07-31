@@ -1,4 +1,4 @@
-package spectrum.spectre_mobile_wallet
+package org.spectre.wallet
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 
