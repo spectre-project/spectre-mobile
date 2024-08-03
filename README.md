@@ -1,7 +1,9 @@
 ## What is Spectrum?
 
 [![Latest Release](https://img.shields.io/github/v/release/spectre-project/spectre-mobile?display_name=tag&style=flat-square)](https://github.com/spectre-project/spectre-mobile/releases)
+[![GitHub license](https://img.shields.io/github/license/spectre-project/spectre-mobile.svg)](https://github.com/spectre-project/spectre-mobile/blob/main/LICENSE)
 [![Downloads Latest](https://img.shields.io/github/downloads/spectre-project/spectre-mobile/latest/total?style=flat-square)](https://github.com/spectre-project/spectre-mobile/releases/latest)
+[![Join the Spectre Discord Server](https://img.shields.io/discord/1233113243741061240.svg?label=&logo=discord&logoColor=ffffff&color=5865F2)](https://discord.com/invite/FZPYpwszcF)
 
 Spectrum is a non-custodial wallet for the [Spectre Network](https://spectre-network.org/)
 BlockDAG, available for Android and iOS. It is written in
