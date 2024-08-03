@@ -79,4 +79,5 @@ If you need any help, feel free to [file a feature request or an issue](https://
 
 ## License
 
-Spectrum is released under the MIT License
+All code is copyrighted by the Kaspium Wallet authors and the Spectre Network
+developers under the MIT license.
