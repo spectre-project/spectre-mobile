@@ -29,7 +29,7 @@ jobs:
       - name: Build Android with ABI splits
         run: |
           flutter pub get
-          dart run build_runner build --delete-conflicting-outputs
+          dart run build_runner build
           flutter build apk --split-per-abi
 
           # 'bin' directory to store and upload the renamed APKs
