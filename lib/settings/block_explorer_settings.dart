@@ -17,7 +17,7 @@ class BlockExplorerSettings with _$BlockExplorerSettings {
       SpectreNetwork.devnet: kSpectreExplorerMainnet,
       SpectreNetwork.simnet: kSpectreExplorerMainnet,
     })
-        Map<SpectreNetwork, BlockExplorer> selection,
+    Map<SpectreNetwork, BlockExplorer> selection,
   }) = _BlockExplorerSettings;
 
   BlockExplorer explorerForNetwork(SpectreNetwork network) {

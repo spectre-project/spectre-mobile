@@ -36,7 +36,8 @@ class ReceiveSheet extends HookConsumerWidget {
     final address = receiveAddress.encoded;
     final amount = ref.watch(amountProvider);
 
-    final spectreUri = SpectreUri(address: receiveAddress.address, amount: amount);
+    final spectreUri =
+        SpectreUri(address: receiveAddress.address, amount: amount);
 
     final shareCardKey = useRef(GlobalKey());
     final showShareCard = useState(false);

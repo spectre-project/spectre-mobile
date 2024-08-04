@@ -167,7 +167,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
     // Drawer in flutter doesn't have a built-in way to push/pop elements
     // on top of it like our Android counterpart. So we can override back button
     // presses and replace the main settings widget with contacts based on a bool
-   return PopScope(
+    return PopScope(
       canPop: false,
       onPopInvoked: _onBackButtonPressed,
       child: ClipRect(
