@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -27,8 +27,20 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build Android apk
-        run: flutter build apk --split-per-abi
+      - name: Decode and setup keystore
+        env:
+          SIGNING_KEYSTORE: ${{ secrets.SIGNING_KEYSTORE }}
+        run: |
+          echo "${{ secrets.SIGNING_KEYSTORE }}" | base64 --decode > android/app/keystore.jks
+
+      - name: Build Android apk with ABI splits and sign
+        env:
+          signingKey: "android/app/keystore.jks"
+          keyStorePassword: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
+          keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        run: |
+          flutter build apk --split-per-abi --release
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
