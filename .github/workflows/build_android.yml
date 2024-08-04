@@ -27,23 +27,20 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Decode and setup keystore
+      - name: Decode keystore, build Android APK and sign
         env:
-          SIGNING_KEYSTORE: ${{ secrets.SIGNING_KEYSTORE }}
+          SIGNING_KEYSTORE: "keystore.jks"
+          SIGNING_KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
         run: |
           echo "${{ secrets.SIGNING_KEYSTORE }}" | base64 --decode > android/app/keystore.jks
-
-      - name: Build Android apk with ABI splits and sign
-        env:
-          signingKey: "android/app/keystore.jks"
-          keyStorePassword: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
-          keyAlias: ${{ secrets.SIGNING_KEY_ALIAS }}
-          keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
-        run: |
-          flutter build apk --split-per-abi --release
+          flutter build apk --release
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
         with:
           name: android-build
-          path: build/app/outputs/flutter-apk/*.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: ignore
+          retention-days: 7  # specifies how long to keep the artifact
