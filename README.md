@@ -1,6 +1,6 @@
 ## What is Spectrum?
 
-[![Build Status](https://github.com/spectre-project/spectre-mobile/actions/workflows/ci.yaml/badge.svg)](https://github.com/spectre-project/spectre-mobile/actions/workflows/ci.yml)
+[![Build Status](https://github.com/spectre-project/spectre-mobile/actions/workflows/ci.yml/badge.svg)](https://github.com/spectre-project/spectre-mobile/actions/workflows/ci.yml)
 [![Latest Release](https://img.shields.io/github/v/release/spectre-project/spectre-mobile?display_name=tag&style=flat-square)](https://github.com/spectre-project/spectre-mobile/releases)
 [![LICENSE](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/spectre-project/spectre-mobile/blob/main/LICENSE)
 [![Downloads Latest](https://img.shields.io/github/downloads/spectre-project/spectre-mobile/latest/total?style=flat-square)](https://github.com/spectre-project/spectre-mobile/releases/latest)
