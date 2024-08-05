@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../app_providers.dart';
 import '../l10n/l10n.dart';
@@ -9,6 +10,15 @@ import 'app_simpledialog.dart';
 class NoticeDialog extends HookConsumerWidget {
   final String version;
   const NoticeDialog({Key? key, required this.version}) : super(key: key);
+
+  Future<void> openUrl(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -54,6 +64,14 @@ class NoticeDialog extends HookConsumerWidget {
         ),
       ),
       actions: [
+        TextButton(
+          style: styles.dialogButtonStyle,
+          child: Text(
+            'Join Discord',
+            style: styles.textStyleDialogOptions,
+          ),
+          onPressed: () => openUrl('https://discord.spectre-network.org/'),
+        ),
         TextButton(
           style: styles.dialogButtonStyle,
           child: Text(
