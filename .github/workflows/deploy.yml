@@ -25,12 +25,27 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           cache: 'gradle'
-      
-      - name: Build Android with ABI splits
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Run code generation
+        run: dart run build_runner build
+
+      - name: Decode keystore & build Android
+        env:
+          SIGNING_KEYSTORE: "keystore.jks"
+          SIGNING_KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
         run: |
-          flutter pub get
-          dart run build_runner build --delete-conflicting-outputs
-          flutter build apk --split-per-abi
+          echo "${{ secrets.SIGNING_KEYSTORE }}" | base64 --decode > android/app/keystore.jks
+
+          # build Android APK with ABI splits
+          flutter build apk --release --split-per-abi
+
+          # build universal Android APK
+          flutter build apk --release
 
           # 'bin' directory to store and upload the renamed APKs
           mkdir bin
@@ -39,10 +54,6 @@ jobs:
           mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-arm64-v8a-release.apk
           mv build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-armeabi-v7a-release.apk
           mv build/app/outputs/flutter-apk/app-x86_64-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-x86_64-release.apk
-
-      - name: Build Universal Android APK
-        run: |
-          flutter build apk
 
           # Rename Universal APK with Release Tag
           mv build/app/outputs/flutter-apk/app-release.apk bin/spectrum-${{ github.event.release.tag_name }}-app-universal.apk

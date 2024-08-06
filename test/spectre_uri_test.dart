@@ -4,7 +4,7 @@ import 'package:spectrum/spectre/spectre.dart';
 
 void main() {
   final address =
-      'spectre:precqv0krj3r6uyyfa36ga7s0u9jct0v4wg8ctsfde2gkrsgwgw8jgxfzfc98';
+      'spectre:qpauqsvk7yf9unexwmxsnmg547mhyga37csh0kj53q6xxgl24ydxjxa3h2n6v';
 
   test('Uri with invalid address', () {
     final uriStr = 'spectre:invalid';

@@ -35,7 +35,8 @@ class Amount with _$Amount {
     return Amount(raw: rawBigInt, tokenInfo: tokenInfo);
   }
 
-  factory Amount.rawInt64(Int64 raw, {TokenInfo tokenInfo = TokenInfo.spectre}) {
+  factory Amount.rawInt64(Int64 raw,
+      {TokenInfo tokenInfo = TokenInfo.spectre}) {
     final rawBigInt = BigInt.parse(raw.toString());
     return Amount(raw: rawBigInt, tokenInfo: tokenInfo);
   }

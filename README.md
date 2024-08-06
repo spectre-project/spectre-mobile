@@ -1,5 +1,6 @@
 ## What is Spectrum?
 
+[![Build Status](https://github.com/spectre-project/spectre-mobile/actions/workflows/ci.yml/badge.svg)](https://github.com/spectre-project/spectre-mobile/actions/workflows/ci.yml)
 [![Latest Release](https://img.shields.io/github/v/release/spectre-project/spectre-mobile?display_name=tag&style=flat-square)](https://github.com/spectre-project/spectre-mobile/releases)
 [![LICENSE](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/spectre-project/spectre-mobile/blob/main/LICENSE)
 [![Downloads Latest](https://img.shields.io/github/downloads/spectre-project/spectre-mobile/latest/total?style=flat-square)](https://github.com/spectre-project/spectre-mobile/releases/latest)
@@ -31,6 +32,12 @@ To build the APK for Android, use the following command:
 flutter build apk
 ```
 This command compiles the app into a single universal APK compatible with all device architectures.
+
+If you want to create a signed APK, you need to include the `--release` argument:
+```bash
+flutter build apk --release
+```
+Adding the `--release` argument will build the app in release mode, which triggers the signing process using the release signing configuration defined in your `build.gradle` file. This produces a signed APK ready for distribution.
 
 For generating APKs for specific device architectures, use:
 ```bash
@@ -76,6 +83,84 @@ If you need any help, feel free to [file a feature request or an issue](https://
 |---------------------------|---------------------------|---------------------------|
 | ![](assets/images/b1.png) | ![](assets/images/b2.png) | ![](assets/images/b3.png) |
 | ![](assets/images/c1.png) | ![](assets/images/c2.png) | ![](assets/images/c3.png) |
+
+## Signing an APK in GitHub Workflows
+
+In the repository, the APK signing process during GitHub Actions is implemented through the following steps:
+
+1. **Creating a Keystore**:
+   A keystore file is generated which will be used to sign the APK. This is done using the `keytool` command:
+
+   ```bash
+   keytool -genkey -v -keystore release.keystore -alias your_key_alias -keyalg RSA -keysize 2048 -validity 10000
+   ```
+
+   This command creates a keystore file named `release.keystore`. The alias for the key, `your_key_alias`, should be replaced with a desired name.
+
+2. **Encoding the Keystore**:
+   To securely store the keystore in GitHub Secrets, it is encoded in base64 using the following command:
+
+   ```bash
+   base64 release.keystore > release.keystore.base64
+   ```
+
+   The contents of the resulting `release.keystore.base64` file are then copied and stored as a GitHub Secret.
+
+3. **Setting GitHub Secrets**:
+   In the GitHub repository settings, specific secrets are configured under `Settings > Secrets and variables > Actions > New repository secret`. The required secrets include:
+
+   - `SIGNING_KEYSTORE`: Contains the base64 encoded contents of the keystore.
+   - `SIGNING_KEYSTORE_PASSWORD`: Stores the password for the keystore.
+   - `SIGNING_KEY_ALIAS`: Represents the alias name for the key.
+   - `SIGNING_KEY_PASSWORD`: Holds the password for the key alias.
+
+4. **Configuring Build Types in `build.gradle`**:
+   The `android/app/build.gradle` file is configured to handle the signing process based on the availability of environment variables. If `SIGNING_KEYSTORE` is defined, it triggers the signing of the APK with the provided credentials. If not, the build defaults to a debug configuration.
+
+   ```groovy
+   buildTypes {
+       release {
+           signingConfigs {
+               if (System.getenv("SIGNING_KEYSTORE") != null) {
+                   create("release") {
+                       storeFile = file(System.getenv("SIGNING_KEYSTORE"))
+                       storePassword = System.getenv("SIGNING_KEYSTORE_PASSWORD")
+                       keyAlias = System.getenv("SIGNING_KEY_ALIAS")
+                       keyPassword = System.getenv("SIGNING_KEY_PASSWORD")
+                   }
+                   signingConfig = signingConfigs.release
+               } else {
+                   signingConfig = signingConfigs.debug
+                   applicationIdSuffix ".debug"
+               }
+           }
+           minifyEnabled true
+       }
+       debug {
+           shrinkResources false
+           minifyEnabled false
+           applicationIdSuffix ".debug"
+           signingConfig signingConfigs.debug
+       }
+   }
+   ```
+
+5. **GitHub Workflow Step**:
+   The GitHub Actions workflow includes a step to decode the keystore and build the signed APK:
+
+   ```yaml
+   - name: Decode keystore, build Android APK and sign
+     env:
+       SIGNING_KEYSTORE: "keystore.jks"
+       SIGNING_KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
+       SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+       SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+     run: |
+       echo "${{ secrets.SIGNING_KEYSTORE }}" | base64 --decode > android/app/keystore.jks
+       flutter build apk --release
+   ```
+
+   In this step, the keystore is decoded from its base64 encoded form and saved to `android/app/keystore.jks`, followed by building the APK in release mode with the appropriate signing configuration.
 
 ## License
 

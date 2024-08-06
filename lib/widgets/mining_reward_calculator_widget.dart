@@ -43,7 +43,8 @@ class _MiningRewardCalculatorWidgetState
         'hour': _rewardsInRange(blockReward, 3600) * percentOfNetwork,
         'day': _rewardsInRange(blockReward, 86400) * percentOfNetwork,
         'week': _rewardsInRange(blockReward, 604800) * percentOfNetwork,
-        'month': _rewardsInRange(blockReward, (365.25 / 12 * 86400).round()) * percentOfNetwork,
+        'month': _rewardsInRange(blockReward, (365.25 / 12 * 86400).round()) *
+            percentOfNetwork,
       };
 
       setState(() {
@@ -115,7 +116,8 @@ class _MiningRewardCalculatorWidgetState
             networkStats.when(
               data: (stats) => PrimaryButton(
                 title: 'Calculate Rewards',
-                onPressed: () => _calculateRewards(stats.blockReward, stats.hashrate),
+                onPressed: () =>
+                    _calculateRewards(stats.blockReward, stats.hashrate),
               ),
               loading: () => CircularProgressIndicator(),
               error: (err, stack) => Container(
