@@ -1,4 +1,4 @@
-name: Build Android
+name: Build Android Debug
 
 on:
   workflow_dispatch:
@@ -27,15 +27,8 @@ jobs:
       - name: Run code generation
         run: dart run build_runner build
 
-      - name: Decode keystore, build Android APK and sign
-        env:
-          SIGNING_KEYSTORE: "keystore.jks"
-          SIGNING_KEYSTORE_PASSWORD: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
-          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-        run: |
-          echo "${{ secrets.SIGNING_KEYSTORE }}" | base64 --decode > android/app/keystore.jks
-          flutter build apk --release
+      - name: build Android APK
+        run: flutter build apk
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v4
