@@ -13,8 +13,10 @@ final _spectrePriceCacheProvider =
   return CoinGeckoPriceNotifier(repository);
 });
 
-final _spectrePriceRemoteProvider = FutureProvider<CoinGeckoPrice>((ref) async {
+final _spectrePriceRemoteProvider =
+    FutureProvider.autoDispose<CoinGeckoPrice>((ref) async {
   ref.watch(remoteRefreshProvider);
+  ref.watch(timeProvider);
 
   final currency = ref.watch(currencyProvider);
   final fiat = currency.name.toLowerCase();
@@ -24,9 +26,9 @@ final _spectrePriceRemoteProvider = FutureProvider<CoinGeckoPrice>((ref) async {
 
   // 60 seconds
   final maxCacheAge = 60 * 1000;
-  final nowTimestamp = DateTime.now().millisecondsSinceEpoch;
+  final timestamp = DateTime.now().millisecondsSinceEpoch;
   if (cached.currency == currency.currency &&
-      nowTimestamp - cached.timestamp < maxCacheAge) {
+      timestamp - cached.timestamp < maxCacheAge) {
     log.d('Using cached CoinGecko exchange rates');
     return cached;
   }
@@ -40,7 +42,7 @@ final _spectrePriceRemoteProvider = FutureProvider<CoinGeckoPrice>((ref) async {
     return CoinGeckoPrice(
       currency: currency.currency,
       price: Decimal.parse(price.toString()),
-      timestamp: nowTimestamp,
+      timestamp: timestamp,
     );
   } catch (e, st) {
     log.e('Failed to fetch SPR exchange rate', error: e, stackTrace: st);
@@ -50,7 +52,7 @@ final _spectrePriceRemoteProvider = FutureProvider<CoinGeckoPrice>((ref) async {
     return CoinGeckoPrice(
       currency: currency.currency,
       price: Decimal.zero,
-      timestamp: nowTimestamp,
+      timestamp: timestamp,
     );
   }
 });

@@ -1,6 +1,6 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_vibrate/flutter_vibrate.dart';
+import 'package:vibration/vibration.dart';
 
 import 'platform.dart';
 
@@ -9,7 +9,7 @@ class HapticUtil {
   const HapticUtil();
 
   /// Return true if this device supports taptic engine (iPhone 7+)
-  Future<bool> hasTapicEngine() async {
+  Future<bool> hasTapticEngine() async {
     if (!kPlatformIsIOS) {
       return false;
     }
@@ -35,9 +35,9 @@ class HapticUtil {
   /// Feedback for error
   Future<void> error() async {
     if (kPlatformIsIOS) {
-      // If this is simulator or this device doesnt have tapic then we can't use this
-      if (await hasTapicEngine() && await Vibrate.canVibrate) {
-        Vibrate.feedback(FeedbackType.error);
+      // If this is a simulator or the device doesn't have a taptic engine
+      if (await hasTapticEngine() && await Vibration.hasVibrator() == true) {
+        Vibration.vibrate(duration: 500); // Vibration for error feedback
       } else {
         HapticFeedback.vibrate();
       }
@@ -49,9 +49,10 @@ class HapticUtil {
   /// Feedback for success
   Future<void> success() async {
     if (kPlatformIsIOS) {
-      // If this is simulator or this device doesnt have tapic then we can't use this
-      if (await hasTapicEngine() && await Vibrate.canVibrate) {
-        Vibrate.feedback(FeedbackType.medium);
+      // If this is a simulator or the device doesn't have a taptic engine
+      if (await hasTapticEngine() && await Vibration.hasVibrator() == true) {
+        Vibration.vibrate(
+            duration: 100); // Short vibration for success feedback
       } else {
         HapticFeedback.mediumImpact();
       }
