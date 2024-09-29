@@ -12,60 +12,89 @@ BlockDAG, available for Android and iOS. It is written in
 
 ## Features
 
-* **Wallet Import:** Import 12 and 24-word wallets.
-* **Real-Time Network Stats:** Monitor network statistics directly from the network menu.
-* **Mining Reward Calculator:** Access a mining reward calculator in the advanced menu.
-* **CSV Export:** Export your transactions as CSV files from the advanced menu.
-* **Theme Options:** Choose between Light, Dark, and AMOLED Dark themes.
+- **Wallet Import:** Import 12 and 24-word wallets, supporting all derivation paths, including [Spectre Desktop](https://github.com/spectre-project/spectre-desktop),
+  [Webwallet](https://wallet.spectre-network.org/), [Rusty Spectre](https://github.com/spectre-project/rusty-spectre) and [Spectred (Golang)](https://github.com/spectre-project/spectred).
+- **BIP39 Passphrase Support**: Supports BIP39 passphrases for enhanced wallet security.
+- **Watch-Only Wallet Monitoring:** Securely monitor your wallet without importing your private key by using the `export mnemonic` command in [rusty-spectre](https://github.com/spectre-project/rusty-spectre). This prints the extended public key, which can be imported into the Spectre mobile wallet using the `Import Watch-Only Wallet` option. With the extended public key, you can gain read-only access to view incoming transactions and monitor your balance without being able to send funds.
+- **Real-Time Network Stats:** Monitor network statistics directly from the network menu.
+- **Mining Reward Calculator:** Access a mining reward calculator in the advanced menu.
+- **CSV Export:** Export your transactions as CSV files from the advanced menu.
+- **Theme Options:** Choose between Light, Dark, and AMOLED Dark themes.
 
 ## Contributing
 
-* Fork the repository and clone it to your local machine
-* Follow the instructions [here](https://flutter.io/docs/get-started/install) to install the Flutter SDK
-* Setup [Android Studio](https://flutter.io/docs/development/tools/android-studio) or [Visual Studio Code](https://flutter.io/docs/development/tools/vs-code).
+- Fork the repository and clone it to your local machine
+- Follow the instructions [here](https://flutter.io/docs/get-started/install) to install the Flutter SDK
+- Setup [Android Studio](https://flutter.io/docs/development/tools/android-studio) or [Visual Studio Code](https://flutter.io/docs/development/tools/vs-code).
 
 ## Building
 
 ### Android:
+
 To build the APK for Android, use the following command:
+
 ```bash
 flutter build apk
 ```
+
 This command compiles the app into a single universal APK compatible with all device architectures.
 
 If you want to create a signed APK, you need to include the `--release` argument:
+
 ```bash
 flutter build apk --release
 ```
+
 Adding the `--release` argument will build the app in release mode, which triggers the signing process using the release signing configuration defined in your `build.gradle` file. This produces a signed APK ready for distribution.
 
 For generating APKs for specific device architectures, use:
+
 ```bash
 flutter build apk --split-per-abi
 ```
+
 This will create separate APKs for different ABIs (Application Binary Interfaces), allowing users to download only the APK suitable for their device, reducing the overall download size.
 
 ### iOS:
+
 To build the app for iOS, use:
+
 ```bash
 flutter build ios
 ```
+
 This command compiles the app for iOS devices.
 
 ### Running the App:
+
 If you have a connected device or emulator, you can run the app directly from your development machine.
 
 #### Debug Mode:
+
 To run the app in debug mode, use:
+
 ```bash
 flutter run
 ```
+
 This mode is useful for development and testing, providing hot reload and detailed error messages.
 
 #### Release Mode:
+
 To run the app in release mode, use:
+
 ```bash
 flutter run --release
+```
+
+## Regenerate gRPC Code
+
+If you need to regenerate the protocol code after updates, please do the
+following:
+
+```bash
+dart pub global activate protoc_plugin 21.1.2
+protoc --dart_out="grpc:lib/spectre/grpc" -I./proto messages.proto p2p.proto rpc.proto --plugin ~/.pub-cache/bin/protoc-gen-dart
 ```
 
 ## Translations
@@ -80,9 +109,10 @@ If you need any help, feel free to [file a feature request or an issue](https://
 ## Screenshots
 
 | ![](assets/images/a1.png) | ![](assets/images/a2.png) | ![](assets/images/a3.png) |
-|---------------------------|---------------------------|---------------------------|
+| ------------------------- | ------------------------- | ------------------------- |
 | ![](assets/images/b1.png) | ![](assets/images/b2.png) | ![](assets/images/b3.png) |
 | ![](assets/images/c1.png) | ![](assets/images/c2.png) | ![](assets/images/c3.png) |
+| ![](assets/images/d1.png) | ![](assets/images/d2.png) | ![](assets/images/d3.png) |
 
 ## Signing an APK in GitHub Workflows
 
