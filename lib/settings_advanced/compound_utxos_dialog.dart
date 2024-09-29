@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../spectre/spectre.dart';
 import '../l10n/l10n.dart';
 import '../util/numberutil.dart';
@@ -41,7 +42,7 @@ class CompoundUtxosDialog extends ConsumerWidget {
         final spendableUtxos = ref.read(spendableUtxosProvider);
         if (spendableUtxos.length <= 1) {
           UIUtil.showSnackbar(l10n.compoundTooFewUtxos, context);
-          Navigator.of(context).pop();
+          appRouter.pop(context);
           return;
         }
         final compoundTx = walletService.createCompoundTx(
@@ -49,24 +50,21 @@ class CompoundUtxosDialog extends ConsumerWidget {
           spendableUtxos: spendableUtxos,
           feePerInput: kFeePerInput,
         );
-        await walletService.sendTransaction(
-          compoundTx,
-          changeAddress: changeAddress.address,
-        );
-        await addressNotifier.addAddress(changeAddress);
+        await walletService.sendTransaction(compoundTx);
+        await addressNotifier.addAddress(changeAddress.copyWith(used: true));
 
         if (lightMode) {
           // give some time for compound tx to broadcast and get accepted
           await Future.delayed(const Duration(seconds: 5));
           // close both dialogs
-          Navigator.of(context).pop();
+          appRouter.pop(context);
         }
 
         UIUtil.showSnackbar(l10n.compoundSuccess, context);
       } catch (e) {
         UIUtil.showSnackbar(l10n.compoundFailure, context);
       } finally {
-        Navigator.of(context).pop();
+        appRouter.pop(context);
       }
     }
 
@@ -147,7 +145,7 @@ class CompoundUtxosDialog extends ConsumerWidget {
       actions: [
         TextButton(
           style: styles.dialogButtonStyle,
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => appRouter.pop(context),
           child: Text(
             l10n.closeUppercased,
             style: styles.textStyleDialogOptions,

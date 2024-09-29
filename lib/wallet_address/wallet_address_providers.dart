@@ -9,7 +9,7 @@ import '../transactions/transaction_providers.dart';
 import '../wallet/wallet_types.dart';
 import '../wallet_auth/wallet_auth_providers.dart';
 import '../wallet_balance/wallet_balance_providers.dart';
-import 'address_settings.dart';
+import '../settings/address_settings.dart';
 import 'wallet_address.dart';
 import 'wallet_address_notifier.dart';
 
@@ -135,4 +135,8 @@ final receiveAddressProvider = Provider.autoDispose((ref) {
   return ref.watch(
     addressNotifierProvider.select((value) => value.receiveAddress),
   );
+});
+
+final selectedAddressProvider = StateProvider.autoDispose((ref) {
+  return ref.read(receiveAddressProvider);
 });

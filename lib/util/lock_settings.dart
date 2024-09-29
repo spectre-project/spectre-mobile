@@ -1,9 +1,8 @@
-import '../settings/device_lock_timeout.dart';
 import 'vault.dart';
 
 class LockSettings {
   static const _spectrum_lock = 'fspectrum_lock_dev';
-  static const _spectrum_lock_timeout = 'fspectrum_lock_timeout';
+  static const _spectrum_autolock = 'fspectrum_autolock_dev';
 
   static const _true = 'true';
   static const _false = 'false';
@@ -13,15 +12,13 @@ class LockSettings {
 
   Future<void> setLock(bool value) =>
       vault.set(_spectrum_lock, value ? _true : _false);
+
   Future<bool> getLock() async =>
-      (await vault.get(_spectrum_lock) ?? _false) == _true;
+      (await vault.get(_spectrum_lock) ?? _true) == _true;
 
-  Future<void> setLockTimeout(LockTimeoutSetting setting) =>
-      vault.set(_spectrum_lock_timeout, setting.getId());
+  Future<void> setAutoLock(bool value) =>
+      vault.set(_spectrum_autolock, value ? _true : _false);
 
-  Future<LockTimeoutSetting> getLockTimeout() async {
-    final lockTimeout =
-        await vault.get(_spectrum_lock_timeout) ?? LockTimeoutOption.ONE.name;
-    return LockTimeoutSetting(LockTimeoutOption.values.byName(lockTimeout));
-  }
+  Future<bool> getAutoLock() async =>
+      (await vault.get(_spectrum_autolock) ?? _true) == _true;
 }

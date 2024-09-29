@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../spectre/spectre.dart';
 import '../l10n/l10n.dart';
-import '../transactions/send_tx.dart';
 import '../util/numberutil.dart';
 import '../util/ui_util.dart';
 import '../widgets/address_card.dart';
@@ -52,29 +52,24 @@ class SendConfirmSheet extends HookConsumerWidget {
           l10n.sendTxProgressDescription,
         );
 
-        final addressNotifier = ref.read(addressNotifierProvider);
-        final changeAddress = await addressNotifier.nextChangeAddress;
+        final txId = await walletService.sendTransaction(tx);
 
-        final result = await walletService.sendTransaction(
-          tx,
-          changeAddress: changeAddress.address,
-        );
-
-        if (result.changeAddressUsed) {
-          await addressNotifier.addAddress(changeAddress);
+        if (tx.changeAddress case final changeAddress?) {
+          final addressNotifier = ref.read(addressNotifierProvider);
+          await addressNotifier.markUsed([changeAddress.encoded]);
         }
 
         if (tx.note case final txNote?) {
           final notes = ref.read(txNotesProvider);
-          notes.addNoteForTxId(result.txId, txNote);
+          notes.addNoteForTxId(txId, txNote);
         }
 
-        Navigator.of(context).pop();
+        appRouter.pop(context);
 
         final sheet = SendCompleteSheet(
           amount: tx.amount,
           toAddress: tx.toAddress,
-          txId: result.txId,
+          txId: txId,
           note: tx.note,
         );
 
@@ -90,7 +85,7 @@ class SendConfirmSheet extends HookConsumerWidget {
         log.e('Failed to send transaction', error: e, stackTrace: st);
 
         UIUtil.showSnackbar(l10n.sendError, context);
-        Navigator.of(context).pop();
+        appRouter.pop(context);
       }
     }
 
@@ -125,9 +120,18 @@ class SendConfirmSheet extends HookConsumerWidget {
       }
 
       // Authenticate
+      final walletAuth = ref.read(walletAuthProvider.notifier);
       final authUtil = ref.read(authUtilProvider);
-      final message = authMessage();
-      final auth = await authUtil.authenticate(context, message, message);
+      bool auth = false;
+      if (walletAuth.needsPasswordAuth) {
+        auth = await authUtil.authenticateWithPassword(
+          context,
+          validator: (password) => walletAuth.unlock(password: password),
+        );
+      } else {
+        final message = authMessage();
+        auth = await authUtil.authenticate(context, message, message);
+      }
       if (auth) {
         await sendTransaction();
       }
@@ -190,7 +194,7 @@ class SendConfirmSheet extends HookConsumerWidget {
             const SizedBox(height: 16),
             PrimaryOutlineButton(
               title: l10n.cancel,
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => appRouter.pop(context),
             ),
           ],
         ),

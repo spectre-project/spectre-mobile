@@ -98,13 +98,14 @@ class WalletKind with _$WalletKind {
 
 @freezed
 class WalletInfo with _$WalletInfo {
-  const WalletInfo._();
-  const factory WalletInfo({
+  WalletInfo._();
+  factory WalletInfo({
     required String name,
     @Default(WalletKind.localHdSchnorr()) WalletKind kind,
     required String wid,
     required BoxInfoByNetwork boxInfo,
     required String mainnetPublicKey, // HDPublic key base58 encoded
+    @Default(false) bool usesBip39Passphrase,
   }) = _WalletInfo;
 
   factory WalletInfo.fromJson(Map<String, dynamic> json) =>
@@ -116,7 +117,11 @@ class WalletInfo with _$WalletInfo {
 
   bool get hasValidKpub => !kind.isLegacy;
 
+  bool get canSetPassword => !kind.isViewOnly;
+
   BoxInfo getBoxInfo(SpectreNetwork network) => boxInfo.getBoxInfo(network);
+
+  late final String settingsKey = hash('walletSettingsKey#${wid}');
 
   String hdPublicKey(SpectreNetwork network) {
     if (network == SpectreNetwork.mainnet) {
@@ -161,9 +166,10 @@ class WalletData with _$WalletData {
     required String name,
     required WalletKind kind,
     required String seed,
+    required bool usesBip39Passphrase,
     String? mnemonic,
     String? password,
-  }) = _WalletDataMnemonic;
+  }) = _WalletDataSeed;
 
   const factory WalletData.kpub({
     required String name,

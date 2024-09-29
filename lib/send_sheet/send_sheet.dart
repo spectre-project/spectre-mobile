@@ -8,6 +8,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../contacts/contact.dart';
 import '../spectre/spectre.dart';
 import '../l10n/l10n.dart';
@@ -19,6 +20,7 @@ import '../widgets/address_widgets.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/buttons.dart';
+import '../widgets/fiat_mode_icon.dart';
 import '../widgets/fiat_value_container.dart';
 import '../widgets/gradient_widgets.dart';
 import '../widgets/sheet_handle.dart';
@@ -520,7 +522,7 @@ class _SendSheetState extends ConsumerState<SendSheet> {
                   else
                     PrimaryOutlineButton(
                       title: l10n.cancel,
-                      onPressed: Navigator.of(context).pop,
+                      onPressed: () => appRouter.pop(context),
                     ),
                 ],
               ),
@@ -733,9 +735,11 @@ class _SendSheetState extends ConsumerState<SendSheet> {
           autocorrect: false,
           hintText: _amountHint ?? hintText,
           prefixButton: TextFieldButton(
-            icon: AppIcons.swapcurrency,
-            onPressed: () =>
-                ref.read(fiatModeProvider.notifier).update((state) => !state),
+            widget: FiatModeIcon(fiatMode: fiatMode),
+            onPressed: () {
+              final notifier = ref.read(fiatModeProvider.notifier);
+              notifier.update((state) => !state);
+            },
           ),
           suffixButton: TextFieldButton(
             icon: AppIcons.max,
@@ -963,25 +967,6 @@ class _SendSheetState extends ConsumerState<SendSheet> {
             textInputAction: TextInputAction.done,
             maxLines: null,
             autocorrect: false,
-            hintText: _noteHint ?? l10n.enterNote,
-            prefixButton: TextFieldButton(
-              icon: AppIcons.scan,
-              onPressed: () async {
-                FocusManager.instance.primaryFocus?.unfocus();
-
-                final qr = await UserDataUtil.scanQrCode(context);
-                final data = qr?.code;
-                if (data == null) {
-                  return;
-                }
-
-                _noteController.text = data;
-                _notePasteButtonVisible = false;
-                _noteQrButtonVisible = false;
-
-                setState(() => _noteValidAndUnfocused = true);
-              },
-            ),
             fadePrefixOnCondition: true,
             prefixShowFirstCondition: _noteQrButtonVisible,
             suffixButton: TextFieldButton(

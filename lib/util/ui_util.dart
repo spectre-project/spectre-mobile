@@ -7,14 +7,13 @@ import '../spectre/spectre.dart';
 import '../l10n/l10n.dart';
 import '../send_sheet/send_confirm_sheet.dart';
 import '../send_sheet/send_sheet.dart';
-import '../transactions/send_tx.dart';
 import '../widgets/sheet_util.dart';
 import '../widgets/toast_widget.dart';
 import 'numberutil.dart';
 
 abstract class UIUtil {
   static double drawerWidth(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    final width = MediaQuery.sizeOf(context).width;
     return (width < 375) ? width * 0.94 : width * 0.85;
   }
 
@@ -26,11 +25,11 @@ abstract class UIUtil {
     );
   }
 
-  static void showSendFlow(
+  static Future<void> showSendFlow(
     BuildContext context, {
     required WidgetRef ref,
     required SpectreUri uri,
-  }) {
+  }) async {
     final theme = ref.read(themeProvider);
 
     final amount = uri.amount;
@@ -45,26 +44,28 @@ abstract class UIUtil {
 
     final spendableUtxos = ref.read(spendableUtxosProvider);
     final walletService = ref.read(walletServiceProvider);
+    final addressNotifier = ref.read(addressNotifierProvider);
 
-    final SendTx tx;
     try {
-      tx = walletService.createSendTx(
+      final changeAddress = await addressNotifier.nextChangeAddress;
+      final tx = walletService.createSendTx(
         toAddress: uri.address,
         amountRaw: amount.raw,
         spendableUtxos: spendableUtxos,
         feePerInput: kFeePerInput,
+        changeAddress: changeAddress.address,
         note: uri.message,
+      );
+
+      Sheets.showAppHeightNineSheet(
+        context: context,
+        theme: theme,
+        widget: SendConfirmSheet(tx: tx),
       );
     } catch (e) {
       UIUtil.showSnackbar(e.toString(), context);
       return;
     }
-
-    Sheets.showAppHeightNineSheet(
-      context: context,
-      theme: theme,
-      widget: SendConfirmSheet(tx: tx),
-    );
   }
 
   static bool smallScreen(BuildContext context) {
