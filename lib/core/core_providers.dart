@@ -63,9 +63,7 @@ final sharedPrefsProvider =
 
 final hapticUtilProvider = Provider((ref) => const HapticUtil());
 final authUtilProvider = Provider((ref) => AuthUtil(ref));
-final biometricUtilProvider = Provider(
-  (ref) => BiometricUtil(ref.watch(loggerProvider)),
-);
+final biometricUtilProvider = Provider((ref) => BiometricUtil());
 final vaultProvider = Provider((ref) => Vault());
 final sharedPrefsUtilProvider = Provider((ref) {
   final sharedPrefs = ref.watch(sharedPrefsProvider);
@@ -178,6 +176,7 @@ final virtualSelectedParentBlueScoreStreamProvider = StreamProvider((ref) {
 final remoteRefreshProvider = StateProvider((ref) => 0);
 
 final lockDisabledProvider = StateProvider((ref) => false);
+final privacyOverlayDisabledProvider = StateProvider((ref) => false);
 
 final maxSendProvider = Provider.autoDispose((ref) {
   final utxos = ref.watch(spendableUtxosProvider);

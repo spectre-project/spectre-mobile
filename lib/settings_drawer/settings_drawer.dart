@@ -6,6 +6,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../app_icons.dart';
 import '../app_providers.dart';
+import '../app_router.dart';
 import '../contacts/contact_labels.dart';
 import '../contacts/contacts_widget.dart';
 import '../spectre/spectre.dart';
@@ -17,6 +18,7 @@ import '../settings/available_themes.dart';
 import '../settings/setting_item.dart';
 import '../settings_advanced/advanced_menu.dart';
 import '../util/platform.dart';
+import '../util/ui_util.dart';
 import '../widgets/app_simpledialog.dart';
 import '../widgets/dialog.dart';
 import '../widgets/gradient_widgets.dart';
@@ -159,6 +161,8 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
     } else if (_advancedOpen) {
       setState(() => _advancedOpen = false);
       _advancedController.reverse();
+    } else if (!didPop) {
+      appRouter.pop(context);
     }
   }
 
@@ -221,6 +225,40 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
       final network = ref.watch(networkProvider);
       final wallet = ref.watch(walletProvider);
       final hasMnemonic = ref.watch(walletHasMnemonic);
+
+      Future<void> backupSecretPhrase() async {
+        final authUtil = ref.read(authUtilProvider);
+        final mnemonic = await authUtil.getMnemonic(context);
+        if (mnemonic == null) {
+          return;
+        }
+        if (mnemonic.isEmpty) {
+          UIUtil.showSnackbar(l10n.missingSecretPhrase, context);
+          return;
+        }
+        Sheets.showAppHeightNineSheet(
+          context: context,
+          theme: theme,
+          widget: SeedBackupSheet(mnemonic: mnemonic),
+        );
+      }
+
+      void share() {
+        Share.share(
+          l10n.shareSpectrumText,
+          subject: l10n.shareSpectrumSubject,
+        );
+      }
+
+      void logout() {
+        AppDialogs.showConfirmDialog(
+          context,
+          l10n.areYouSure,
+          l10n.logoutDialogContent,
+          l10n.yesUppercase,
+          () => appRouter.logout(context),
+        );
+      }
 
       return Container(
         decoration: BoxDecoration(color: theme.backgroundDark),
@@ -330,44 +368,7 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                         SingleLineItem(
                           heading: l10n.backupSecretPhrase,
                           settingIcon: AppIcons.backupseed,
-                          onPressed: () async {
-                            final authUtil = ref.read(authUtilProvider);
-                            final walletAuth = ref.read(walletAuthProvider);
-                            final notifier =
-                                ref.read(walletAuthProvider.notifier);
-                            var auth = false;
-                            List<String>? mnemonic = null;
-                            if (walletAuth.isEncrypted) {
-                              final notifier =
-                                  ref.read(walletAuthProvider.notifier);
-                              auth = await authUtil.authenticateWithPassword(
-                                  context, (password) async {
-                                try {
-                                  mnemonic = await notifier.getMnemonic(
-                                      password: password);
-                                  return true;
-                                } catch (e) {
-                                  return false;
-                                }
-                              });
-                            } else {
-                              auth = await authUtil.authenticate(
-                                context,
-                                l10n.pinSeedBackup,
-                                l10n.fingerprintSeedBackup,
-                              );
-                            }
-                            if (auth) {
-                              if (mnemonic == null) {
-                                mnemonic = await notifier.getMnemonic();
-                              }
-                              Sheets.showAppHeightNineSheet(
-                                context: context,
-                                theme: theme,
-                                widget: SeedBackupSheet(mnemonic: mnemonic!),
-                              );
-                            }
-                          },
+                          onPressed: backupSecretPhrase,
                         ),
                       ],
                       if (!kPlatformIsIOS &&
@@ -398,31 +399,13 @@ class _SettingsSheetState extends ConsumerState<SettingsSheet>
                       SingleLineItem(
                         heading: l10n.shareSpectrum,
                         settingIcon: AppIcons.share,
-                        onPressed: () {
-                          Share.share(
-                            l10n.shareSpectrumText,
-                            subject: l10n.shareSpectrumSubject,
-                          );
-                        },
+                        onPressed: share,
                       ),
                       Divider(height: 2, color: theme.text15),
                       SingleLineItem(
                         heading: l10n.logoutOrSwitchWallet,
                         settingIcon: AppIcons.logout,
-                        onPressed: () {
-                          AppDialogs.showConfirmDialog(
-                            context,
-                            l10n.areYouSure,
-                            l10n.logoutDialogContent,
-                            l10n.yesUppercase,
-                            () {
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                '/logout',
-                                (_) => false,
-                              );
-                            },
-                          );
-                        },
+                        onPressed: logout,
                       ),
                       Divider(height: 2, color: theme.text15),
                       const VersionWidget(),

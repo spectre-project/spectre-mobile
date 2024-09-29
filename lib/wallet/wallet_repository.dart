@@ -2,7 +2,7 @@ import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 
 import '../database/database.dart';
 import '../spectre/spectre.dart';
-import '../settings/settings_providers.dart';
+import '../settings/settings_repository.dart';
 import '../transactions/transaction_types.dart';
 import '../util/vault.dart';
 import '../wallet_address/wallet_address.dart';
@@ -24,7 +24,7 @@ extension WalletSettings on SettingsRepository {
   Future<void> setWalletEntries(List<WalletInfo> entries) => box.setList(
         _kWalletEntriesKey,
         entries,
-        convert: <WalletInfo>(e) => (e as dynamic).toJson(),
+        convert: (e) => e.toJson(),
       );
 
   WalletInfo? getSelectedWallet() =>

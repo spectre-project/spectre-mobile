@@ -2,12 +2,6 @@ import 'types.dart';
 
 export 'spectre_api_mainnet.dart';
 
-enum ResolvePreviousOutpoints {
-  no,
-  light,
-  full,
-}
-
 abstract class SpectreApi {
   Future<ApiAddressBalance> getBalance({
     required String address,

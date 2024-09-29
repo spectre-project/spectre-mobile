@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../spectre/types.dart';
+import '../spectre/spectre.dart';
 
 part 'transaction_types.freezed.dart';
 part 'transaction_types.g.dart';

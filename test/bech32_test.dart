@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:spectrum/spectre/bech32/bech32.dart';
 import 'package:spectrum/spectre/spectre.dart';
-import 'package:spectrum/utils.dart';
 
 const checkEncodingStringTests = [
   ["a", "0", "", "a:qqeq69uvrh"],

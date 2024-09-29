@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'spectre_api.dart';
+import 'spectre_api_base.dart';
 import 'types.dart';
 
 class SpectreApiMainnet implements SpectreApi {
