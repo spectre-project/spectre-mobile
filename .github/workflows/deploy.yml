@@ -5,7 +5,7 @@ on:
     types: [published]
 
 jobs:
-  build:
+  build-linux-android:
     runs-on: ubuntu-latest
 
     steps:
@@ -78,3 +78,48 @@ jobs:
           files: |
             bin/*.apk
             bin/spectrum-${{ github.event.release.tag_name }}-linux.tar.gz
+
+
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.24.0
+      - run: flutter --version
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Run code generation
+        run: dart run build_runner build
+
+      - name: Build Windows app
+        run: |
+          flutter build windows --release
+
+          # Build MSIX Packaging
+          dart run msix:create
+
+          # 'winbin' directory
+          mkdir winbin
+
+          # create a tar.gz archive with all necessary files
+          powershell Compress-Archive -Path build/windows/x64/runner/Release -DestinationPath winbin/spectrum-${{ github.event.release.tag_name }}-windows.zip
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: winbin/*.zip
