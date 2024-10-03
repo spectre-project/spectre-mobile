@@ -110,9 +110,6 @@ jobs:
         run: |
           flutter build windows --release
 
-          # Build MSIX Packaging
-          dart run msix:create
-
           # 'winbin' directory
           mkdir winbin
 
