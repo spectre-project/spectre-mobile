@@ -1,7 +1,17 @@
 import 'bip32/bip32.dart';
 
+const String kSpectreNetworkMainnet = 'mainnet';
+const String kSpectreNetworkTestnet = 'testnet';
+const String kSpectreNetworkSimnet = 'simnet';
+const String kSpectreNetworkDevnet = 'devnet';
+const String kSpectreNetworkIdMainnet = '$kSpectreNetworkMainnet';
+const String kSpectreNetworkIdTestnet10 = '$kSpectreNetworkTestnet-10';
+const String kSpectreNetworkIdTestnet11 = '$kSpectreNetworkTestnet-11';
+const String kSpectreNetworkIdSimnet = '$kSpectreNetworkSimnet';
+const String kSpectreNetworkIdDevnet = '$kSpectreNetworkDevnet';
+
 const int kMainnetRpcPort = 18110;
-const int kTestnetPpcPort = 18210;
+const int kTestnetRpcPort = 18210;
 const int kSimnetRpcPort = 18510;
 const int kDevnetRpcPort = 18610;
 
@@ -9,27 +19,38 @@ enum SpectreNetwork {
   mainnet,
   testnet,
   devnet,
-  simnet,
-}
+  simnet;
 
-int portForNetwork(SpectreNetwork network) {
-  switch (network) {
-    case SpectreNetwork.mainnet:
-      return kMainnetRpcPort;
-    case SpectreNetwork.testnet:
-      return kTestnetPpcPort;
-    case SpectreNetwork.simnet:
-      return kSimnetRpcPort;
-    case SpectreNetwork.devnet:
-      return kDevnetRpcPort;
+  static SpectreNetwork? tryParse(String network) {
+    return switch (network) {
+      kSpectreNetworkMainnet => SpectreNetwork.mainnet,
+      kSpectreNetworkTestnet => SpectreNetwork.testnet,
+      kSpectreNetworkSimnet => SpectreNetwork.simnet,
+      kSpectreNetworkDevnet => SpectreNetwork.devnet,
+      _ => null,
+    };
   }
+
+  String idWithSuffix([String suffix = '']) {
+    if (suffix.isNotEmpty) {
+      return name + '-$suffix';
+    }
+    return name;
+  }
+
+  int get defaultRpcPort => switch (this) {
+        SpectreNetwork.mainnet => kMainnetRpcPort,
+        SpectreNetwork.testnet => kTestnetRpcPort,
+        SpectreNetwork.simnet => kSimnetRpcPort,
+        SpectreNetwork.devnet => kDevnetRpcPort
+      };
 }
 
 SpectreNetwork networkForPort(int port) {
   switch (port) {
     case kMainnetRpcPort:
       return SpectreNetwork.mainnet;
-    case kTestnetPpcPort:
+    case kTestnetRpcPort:
       return SpectreNetwork.testnet;
     case kSimnetRpcPort:
       return SpectreNetwork.simnet;

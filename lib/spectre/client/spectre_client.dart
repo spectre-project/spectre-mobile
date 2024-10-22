@@ -31,13 +31,13 @@ class VoidSpectreClient extends SpectreClient {
         );
 
   @override
-  Future<SpectredMessage> _singleRequest(SpectredMessage message) async {
-    return SpectredMessage();
+  Future<SpectredResponse> _singleRequest(SpectredRequest message) async {
+    return SpectredResponse();
   }
 
   @override
-  Stream<SpectredMessage> _streamRequest(SpectredMessage message) {
-    return StreamController<SpectredMessage>().stream;
+  Stream<SpectredResponse> _streamRequest(SpectredRequest message) {
+    return StreamController<SpectredResponse>().stream;
   }
 
   @override
@@ -75,8 +75,8 @@ class SpectreClient {
 
   Future<void> terminate() => channel.terminate();
 
-  Future<SpectredMessage> _singleRequest(SpectredMessage message) async {
-    final request = StreamController<SpectredMessage>();
+  Future<SpectredResponse> _singleRequest(SpectredRequest message) async {
+    final request = StreamController<SpectredRequest>();
     final response = rpcClient.messageStream(request.stream);
 
     request.sink.add(message);
@@ -88,8 +88,8 @@ class SpectreClient {
     return result;
   }
 
-  Stream<SpectredMessage> _streamRequest(SpectredMessage message) {
-    final request = StreamController<SpectredMessage>();
+  Stream<SpectredResponse> _streamRequest(SpectredRequest message) {
+    final request = StreamController<SpectredRequest>();
     final response = rpcClient.messageStream(request.stream);
 
     request.sink.add(message);
@@ -97,10 +97,10 @@ class SpectreClient {
     return response;
   }
 
-  Future<List<BalancesByAddressEntry>> getBalancesByAddresses(
+  Future<List<RpcBalancesByAddressesEntry>> getBalancesByAddresses(
     Iterable<String> addresses,
   ) async {
-    final message = SpectredMessage(
+    final message = SpectredRequest(
       getBalancesByAddressesRequest: GetBalancesByAddressesRequestMessage(
         addresses: addresses,
       ),
@@ -114,10 +114,10 @@ class SpectreClient {
     return response.getBalancesByAddressesResponse.entries;
   }
 
-  Future<List<UtxosByAddressesEntry>> getUtxosByAddresses(
+  Future<List<RpcUtxosByAddressesEntry>> getUtxosByAddresses(
     Iterable<String> addresses,
   ) async {
-    final message = SpectredMessage(
+    final message = SpectredRequest(
       getUtxosByAddressesRequest: GetUtxosByAddressesRequestMessage(
         addresses: addresses,
       ),
@@ -135,7 +135,7 @@ class SpectreClient {
   Stream<UtxosChangedNotificationMessage> notifyUtxosChanged(
     Iterable<String> addresses,
   ) {
-    final message = SpectredMessage(
+    final message = SpectredRequest(
       notifyUtxosChangedRequest: NotifyUtxosChangedRequestMessage(
         addresses: addresses,
       ),
@@ -155,7 +155,7 @@ class SpectreClient {
   }
 
   Future<void> stopNotifyingUtxosChanged(List<String> addresses) async {
-    final message = SpectredMessage(
+    final message = SpectredRequest(
       stopNotifyingUtxosChangedRequest: StopNotifyingUtxosChangedRequestMessage(
         addresses: addresses,
       ),
@@ -171,7 +171,7 @@ class SpectreClient {
   // Block Notifications
 
   Stream<BlockAddedNotificationMessage> notifyBlockAdded() {
-    final message = SpectredMessage(
+    final message = SpectredRequest(
       notifyBlockAddedRequest: NotifyBlockAddedRequestMessage(),
     );
 
@@ -194,7 +194,7 @@ class SpectreClient {
     RpcTransaction transaction, {
     bool allowOrphan = false,
   }) async {
-    final message = SpectredMessage(
+    final message = SpectredRequest(
       submitTransactionRequest: SubmitTransactionRequestMessage(
         transaction: transaction,
         allowOrphan: allowOrphan,
@@ -212,12 +212,12 @@ class SpectreClient {
 
   // Mempool
 
-  Future<MempoolEntry> getMempoolEntry({
+  Future<RpcMempoolEntry> getMempoolEntry({
     required String txId,
     bool includeOrphanPool = true,
     bool filterTransactionPool = true,
   }) async {
-    final message = SpectredMessage(
+    final message = SpectredRequest(
       getMempoolEntryRequest: GetMempoolEntryRequestMessage(
         txId: txId,
         includeOrphanPool: includeOrphanPool,
@@ -234,11 +234,11 @@ class SpectreClient {
     return result.getMempoolEntryResponse.entry;
   }
 
-  Future<List<MempoolEntry>> getMempoolEntries({
+  Future<List<RpcMempoolEntry>> getMempoolEntries({
     bool includeOrphanPool = true,
     bool filterTransactionPool = true,
   }) async {
-    final message = SpectredMessage(
+    final message = SpectredRequest(
       getMempoolEntriesRequest: GetMempoolEntriesRequestMessage(
         includeOrphanPool: includeOrphanPool,
         filterTransactionPool: filterTransactionPool,
@@ -254,12 +254,12 @@ class SpectreClient {
     return result.getMempoolEntriesResponse.entries;
   }
 
-  Future<List<MempoolEntryByAddress>> getMempoolEntriesByAddresses(
+  Future<List<RpcMempoolEntryByAddress>> getMempoolEntriesByAddresses(
     Iterable<String> addresses, {
     bool filterTransactionPool = true,
     bool includeOrphanPool = true,
   }) async {
-    final message = SpectredMessage(
+    final message = SpectredRequest(
       getMempoolEntriesByAddressesRequest:
           GetMempoolEntriesByAddressesRequestMessage(
         addresses: addresses,
@@ -279,8 +279,8 @@ class SpectreClient {
 
   // Network info
 
-  Future<String> getNetworkName() async {
-    final message = SpectredMessage(
+  Future<String> getCurrentNetwork() async {
+    final message = SpectredRequest(
       getCurrentNetworkRequest: GetCurrentNetworkRequestMessage(),
     );
 
@@ -293,10 +293,24 @@ class SpectreClient {
     return result.getCurrentNetworkResponse.currentNetwork;
   }
 
+  Future<GetBlockDagInfoResponseMessage> getBlockDagInfo() async {
+    final message = SpectredRequest(
+      getBlockDagInfoRequest: GetBlockDagInfoRequestMessage(),
+    );
+
+    final result = await _singleRequest(message);
+    final error = result.getBlockDagInfoResponse.error;
+    if (error.message.isNotEmpty) {
+      throw RpcException(error);
+    }
+
+    return result.getBlockDagInfoResponse;
+  }
+
   // Get Info
 
   Future<GetInfoResponseMessage> getInfo() async {
-    final message = SpectredMessage(
+    final message = SpectredRequest(
       getInfoRequest: GetInfoRequestMessage(),
     );
 
@@ -311,13 +325,12 @@ class SpectreClient {
 
   // Virtual Selected Parent Chain Changed
 
-  Stream<VirtualSelectedParentChainChangedNotificationMessage>
+  Stream<VirtualChainChangedNotificationMessage>
       notifyVirtualSelectedParentChainChanged({
     required includeAcceptedTransactionIds,
   }) {
-    final message = SpectredMessage(
-      notifyVirtualSelectedParentChainChangedRequest:
-          NotifyVirtualSelectedParentChainChangedRequestMessage(
+    final message = SpectredRequest(
+      notifyVirtualChainChangedRequest: NotifyVirtualChainChangedRequestMessage(
         includeAcceptedTransactionIds: includeAcceptedTransactionIds,
       ),
     );
@@ -325,11 +338,11 @@ class SpectreClient {
     final response = _streamRequest(message);
 
     final result = response.map((event) {
-      final error = event.notifyVirtualSelectedParentChainChangedResponse.error;
+      final error = event.notifyVirtualChainChangedResponse.error;
       if (error.message.isNotEmpty) {
         throw RpcException(error);
       }
-      return event.virtualSelectedParentChainChangedNotification;
+      return event.virtualChainChangedNotification;
     }).skip(1);
 
     return result;
@@ -338,36 +351,33 @@ class SpectreClient {
   // Virtual Selected Parent Blue Score
 
   Future<Int64> getVirtualSelectedParentBlueScore() async {
-    final message = SpectredMessage(
-      getVirtualSelectedParentBlueScoreRequest:
-          GetVirtualSelectedParentBlueScoreRequestMessage(),
+    final message = SpectredRequest(
+      getSinkBlueScoreRequest: GetSinkBlueScoreRequestMessage(),
     );
 
     final result = await _singleRequest(message);
-    final error = result.getVirtualSelectedParentBlueScoreResponse.error;
+    final error = result.getSinkBlueScoreResponse.error;
     if (error.message.isNotEmpty) {
       throw RpcException(error);
     }
 
-    return result.getVirtualSelectedParentBlueScoreResponse.blueScore;
+    return result.getSinkBlueScoreResponse.blueScore;
   }
 
   Stream<Int64> notifyVirtualSelectedParentBlueScoreChanged() {
-    final message = SpectredMessage(
-      notifyVirtualSelectedParentBlueScoreChangedRequest:
-          NotifyVirtualSelectedParentBlueScoreChangedRequestMessage(),
+    final message = SpectredRequest(
+      notifySinkBlueScoreChangedRequest:
+          NotifySinkBlueScoreChangedRequestMessage(),
     );
 
     final response = _streamRequest(message);
 
     final result = response.map((event) {
-      final error =
-          event.notifyVirtualSelectedParentBlueScoreChangedResponse.error;
+      final error = event.notifySinkBlueScoreChangedResponse.error;
       if (error.message.isNotEmpty) {
         throw RpcException(error);
       }
-      return event.virtualSelectedParentBlueScoreChangedNotification
-          .virtualSelectedParentBlueScore;
+      return event.sinkBlueScoreChangedNotification.sinkBlueScore;
     }).skip(1);
 
     return result;
@@ -376,7 +386,7 @@ class SpectreClient {
   // Virtual DAA Score
 
   Stream<Int64> notifyVirtualDaaScoreChanged() {
-    final message = SpectredMessage(
+    final message = SpectredRequest(
       notifyVirtualDaaScoreChangedRequest:
           NotifyVirtualDaaScoreChangedRequestMessage(),
     );
@@ -398,7 +408,7 @@ class SpectreClient {
     String hash, {
     bool includeTransactions = true,
   }) async {
-    final message = SpectredMessage(
+    final message = SpectredRequest(
       getBlockRequest: GetBlockRequestMessage(
         hash: hash,
         includeTransactions: includeTransactions,

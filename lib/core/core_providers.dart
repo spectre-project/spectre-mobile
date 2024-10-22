@@ -54,8 +54,8 @@ final stylesProvider = Provider((ref) {
 
 final blockExplorerProvider = Provider((ref) {
   final settings = ref.watch(blockExplorerSettingsProvider);
-  final network = ref.watch(networkProvider);
-  return settings.explorerForNetwork(network);
+  final networkId = ref.watch(networkIdProvider);
+  return settings.explorerForNetwork(networkId);
 });
 
 final sharedPrefsProvider =
@@ -81,6 +81,11 @@ final networkProvider = Provider((ref) {
   return config.network;
 });
 
+final networkIdProvider = Provider((ref) {
+  final config = ref.watch(spectreNodeConfigProvider);
+  return config.networkId;
+});
+
 final addressPrefixProvider = Provider((ref) {
   final network = ref.watch(networkProvider);
   final prefix = addressPrefixForNetwork(network);
@@ -89,11 +94,16 @@ final addressPrefixProvider = Provider((ref) {
 });
 
 final _spectreApiProvider = Provider<SpectreApi>((ref) {
-  final network = ref.watch(networkProvider);
-  if (network == SpectreNetwork.mainnet) {
-    return SpectreApiMainnet('https://api.spectre-network.org');
-  }
-  return SpectreApiEmpty();
+  final networkId = ref.watch(networkIdProvider);
+  return switch (networkId) {
+    kSpectreNetworkIdMainnet =>
+      SpectreApiMainnet('https://api.spectre-network.org'),
+    kSpectreNetworkIdTestnet10 =>
+      SpectreApiMainnet('https://api-tn.spectre-network.org'),
+    kSpectreNetworkIdTestnet11 =>
+      SpectreApiMainnet('https://api-tn11.spectre-network.org'),
+    _ => SpectreApiEmpty(),
+  };
 });
 
 final spectreApiServiceProvider = Provider<SpectreApiService>((ref) {
@@ -117,7 +127,7 @@ final spectreClientProvider = Provider((ref) {
 });
 
 final balancesForAddressesProvider = FutureProvider.family
-    .autoDispose<Iterable<BalancesByAddressEntry>, List<String>>(
+    .autoDispose<Iterable<RpcBalancesByAddressesEntry>, List<String>>(
         (ref, addresses) async {
   final client = ref.watch(spectreClientProvider);
   final balance = await client.getBalancesByAddresses(addresses);

@@ -17,7 +17,6 @@ import '../widgets/buttons.dart';
 import '../widgets/dialog.dart';
 import '../widgets/sheet_widget.dart';
 import '../widgets/validation_text.dart';
-import 'node_providers.dart';
 import 'node_types.dart';
 
 class NodeAddSheet extends HookConsumerWidget {
@@ -25,6 +24,8 @@ class NodeAddSheet extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(themeProvider);
+    final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
 
     final stateNotifier = useState(const AddNodeSheetState());
@@ -105,19 +106,31 @@ class NodeAddSheet extends HookConsumerWidget {
         final port = int.tryParse(url.split(':').last) ?? kMainnetRpcPort;
         bool isSecure;
         var nodeInfo;
+        String networkName;
         try {
           // Try secure connection first
           client = SpectreClient.url(url, isSecure: true);
           nodeInfo = await client.getInfo();
+          networkName = (await client.getBlockDagInfo()).networkName;
           isSecure = true;
         } catch (_) {
           // Fallback to insecure connection
           client = SpectreClient.url(url, isSecure: false);
           nodeInfo = await client.getInfo();
+          networkName = (await client.getBlockDagInfo()).networkName;
           isSecure = false;
         }
 
-        final network = networkForPort(port);
+        SpectreNetwork network;
+        String suffix;
+        final parts = networkName.split('-');
+        if (parts.length > 1) {
+          network = SpectreNetwork.tryParse(parts[1]) ?? networkForPort(port);
+          suffix = parts.length == 3 ? parts[2] : '';
+        } else {
+          network = networkForPort(port);
+          suffix = '';
+        }
 
         if (!nodeInfo.isSynced) {
           throw Exception(l10n.nodeNotSyncedException);
@@ -133,6 +146,7 @@ class NodeAddSheet extends HookConsumerWidget {
           name: name,
           urls: [url],
           network: network,
+          networkSuffix: suffix,
           isSecure: isSecure,
         );
 
@@ -188,6 +202,8 @@ class NodeAddSheet extends HookConsumerWidget {
           AppTextField(
             controller: nameController,
             focusNode: nameFocusNode,
+            cursorColor: theme.primary,
+            style: styles.textStyleParagraphNormal,
             hintText: state.showNameHint ? l10n.nodeNameHint : '',
             textInputAction: TextInputAction.next,
             textCapitalization: TextCapitalization.words,
@@ -199,6 +215,8 @@ class NodeAddSheet extends HookConsumerWidget {
           AppTextField(
             controller: urlController,
             focusNode: urlFocusNode,
+            cursorColor: theme.primary,
+            style: styles.textStyleParagraphNormal,
             hintText: state.showUrlHint ? l10n.nodeUrlHint : '',
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.url,

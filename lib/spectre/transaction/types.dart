@@ -10,6 +10,9 @@ import '../utils.dart';
 part 'types.freezed.dart';
 part 'types.g.dart';
 
+final kSompiPerSpectre = BigInt.from(100000000);
+final kStorageMassParameter = kSompiPerSpectre * BigInt.from(10000);
+
 final kMinChangeTarget = BigInt.from(20000000);
 final kFeePerInput = BigInt.from(10000);
 const kMaxInputsPerTransaction = 84;
@@ -82,13 +85,13 @@ class Utxo with _$Utxo {
 
   factory Utxo.fromJson(Map<String, dynamic> json) => _$UtxoFromJson(json);
 
-  factory Utxo.fromRpc(UtxosByAddressesEntry rpc) => Utxo(
+  factory Utxo.fromRpc(RpcUtxosByAddressesEntry rpc) => Utxo(
         address: rpc.address,
         outpoint: Outpoint.fromRpc(rpc.outpoint),
         utxoEntry: UtxoEntry.fromRpc(rpc.utxoEntry),
       );
 
-  UtxosByAddressesEntry toRpc() => UtxosByAddressesEntry(
+  RpcUtxosByAddressesEntry toRpc() => RpcUtxosByAddressesEntry(
         address: address,
         outpoint: outpoint.toRpc(),
         utxoEntry: utxoEntry.toRpc(),
@@ -246,6 +249,7 @@ class Transaction with _$Transaction {
         gas: gas,
         payload: payload?.hex,
       );
+  bool get isCoinbase => subnetworkId.hex == kSubnetworkIdCoinbaseHex;
 }
 
 @unfreezed

@@ -2,7 +2,7 @@ name: spectrum
 description: The Ultimate Self-Custodial Wallet for the Spectre Network.
 publish_to: "none"
 
-version: 0.3.17+1
+version: 0.3.19+1
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
@@ -53,7 +53,7 @@ dependencies:
   flutter_displaymode: 0.6.0
   #push: 1.0.0
   protobuf: 3.1.0
-  grpc: 4.0.0
+  grpc: 4.0.1
   hex: 0.2.0
   collection: 1.18.0
   fixnum: 1.1.0

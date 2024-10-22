@@ -35,11 +35,34 @@ const kSpectreExplorerMainnet = BlockExplorer(
   txUrl: 'https://explorer.spectre-network.org/txs/$kParamPattern',
 );
 
-const kBlockExplorerOptions = {
-  SpectreNetwork.mainnet: [
+const kSpectreExplorerTestnet10 = BlockExplorer(
+  network: SpectreNetwork.testnet,
+  name: 'Spectre Explorer',
+  url: 'explorer-tn.spectre-network.org',
+  addressUrl:
+      'https://explorer-tn.spectre-network.org/addresses/$kParamPattern',
+  txUrl: 'https://explorer-tn.spectre-network.org/txs/$kParamPattern',
+);
+
+const kSpectreExplorerTestnet11 = BlockExplorer(
+  network: SpectreNetwork.testnet,
+  name: 'Spectre Explorer',
+  url: 'explorer-tn11.spectre-network.org',
+  addressUrl:
+      'https://explorer-tn11.spectre-network.org/addresses/$kParamPattern',
+  txUrl: 'https://explorer-tn11.spectre-network.org/txs/$kParamPattern',
+);
+
+const kBlockExplorersOptions = <String, List<BlockExplorer>>{
+  kSpectreNetworkIdMainnet: [
     kSpectreExplorerMainnet,
   ],
-  SpectreNetwork.testnet: [],
-  SpectreNetwork.devnet: [],
-  SpectreNetwork.simnet: [],
+  kSpectreNetworkIdTestnet10: [
+    kSpectreExplorerTestnet10,
+  ],
+  kSpectreNetworkIdTestnet11: [
+    kSpectreExplorerTestnet11,
+  ],
+  kSpectreNetworkIdDevnet: [],
+  kSpectreNetworkIdSimnet: [],
 };

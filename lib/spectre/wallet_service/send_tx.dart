@@ -12,9 +12,9 @@ class SendTx with _$SendTx {
   factory SendTx({
     required SpectreUri uri,
     required BigInt amountRaw,
+    required BigInt fee,
     required Transaction tx,
     Address? changeAddress,
-    BigInt? fee,
     String? note,
   }) = _SendTx;
 
