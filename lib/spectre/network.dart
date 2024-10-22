@@ -11,7 +11,7 @@ const String kSpectreNetworkIdSimnet = '$kSpectreNetworkSimnet';
 const String kSpectreNetworkIdDevnet = '$kSpectreNetworkDevnet';
 
 const int kMainnetRpcPort = 18110;
-const int kTestnetPpcPort = 18210;
+const int kTestnetRpcPort = 18210;
 const int kSimnetRpcPort = 18510;
 const int kDevnetRpcPort = 18610;
 
@@ -40,7 +40,7 @@ enum SpectreNetwork {
 
   int get defaultRpcPort => switch (this) {
         SpectreNetwork.mainnet => kMainnetRpcPort,
-        SpectreNetwork.testnet => kTestnetPpcPort,
+        SpectreNetwork.testnet => kTestnetRpcPort,
         SpectreNetwork.simnet => kSimnetRpcPort,
         SpectreNetwork.devnet => kDevnetRpcPort
       };
@@ -50,7 +50,7 @@ SpectreNetwork networkForPort(int port) {
   switch (port) {
     case kMainnetRpcPort:
       return SpectreNetwork.mainnet;
-    case kTestnetPpcPort:
+    case kTestnetRpcPort:
       return SpectreNetwork.testnet;
     case kSimnetRpcPort:
       return SpectreNetwork.simnet;
