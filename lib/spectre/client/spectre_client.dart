@@ -279,7 +279,7 @@ class SpectreClient {
 
   // Network info
 
-  Future<String> getNetworkName() async {
+  Future<String> getCurrentNetwork() async {
     final message = SpectredMessage(
       getCurrentNetworkRequest: GetCurrentNetworkRequestMessage(),
     );
@@ -291,6 +291,18 @@ class SpectreClient {
     }
 
     return result.getCurrentNetworkResponse.currentNetwork;
+  }
+
+  Future<GetBlockDagInfoResponseMessage> getBlockDagInfo() async {
+    final message = SpectredMessage(
+      getBlockDagInfoRequest: GetBlockDagInfoRequestMessage(),
+    );
+    final result = await _singleRequest(message);
+    final error = result.getBlockDagInfoResponse.error;
+    if (error.message.isNotEmpty) {
+      throw RpcException(error);
+    }
+    return result.getBlockDagInfoResponse;
   }
 
   // Get Info

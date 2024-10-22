@@ -12,16 +12,15 @@ class BlockExplorerSettings with _$BlockExplorerSettings {
 
   const factory BlockExplorerSettings({
     @Default(const {
-      SpectreNetwork.mainnet: kSpectreExplorerMainnet,
-      SpectreNetwork.testnet: kSpectreExplorerMainnet,
-      SpectreNetwork.devnet: kSpectreExplorerMainnet,
-      SpectreNetwork.simnet: kSpectreExplorerMainnet,
+      kSpectreNetworkIdMainnet: kSpectreExplorerMainnet,
+      kSpectreNetworkIdTestnet10: kSpectreExplorerTestnet10,
+      kSpectreNetworkIdTestnet11: kSpectreExplorerTestnet11,
     })
-    Map<SpectreNetwork, BlockExplorer> selection,
+    Map<String, BlockExplorer> selection,
   }) = _BlockExplorerSettings;
 
-  BlockExplorer explorerForNetwork(SpectreNetwork network) {
-    return selection[network] ?? kSpectreExplorerMainnet;
+  BlockExplorer explorerForNetwork(String networkId) {
+    return selection[networkId] ?? kSpectreExplorerMainnet;
   }
 
   factory BlockExplorerSettings.fromJson(Map<String, dynamic> json) =>

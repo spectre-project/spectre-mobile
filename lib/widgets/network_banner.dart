@@ -5,9 +5,9 @@ import '../app_providers.dart';
 import '../spectre/spectre.dart';
 
 final _networkBannerProvider = Provider<String?>((ref) {
-  final network = ref.watch(networkProvider);
-  if (network != SpectreNetwork.mainnet) {
-    return network.name.toUpperCase();
+  final nodeConfig = ref.watch(spectreNodeConfigProvider);
+  if (nodeConfig.network != SpectreNetwork.mainnet) {
+    return nodeConfig.networkId.toUpperCase();
   }
   return null;
 });
