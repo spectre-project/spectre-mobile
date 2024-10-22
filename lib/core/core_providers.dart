@@ -127,7 +127,7 @@ final spectreClientProvider = Provider((ref) {
 });
 
 final balancesForAddressesProvider = FutureProvider.family
-    .autoDispose<Iterable<BalancesByAddressEntry>, List<String>>(
+    .autoDispose<Iterable<RpcBalancesByAddressesEntry>, List<String>>(
         (ref, addresses) async {
   final client = ref.watch(spectreClientProvider);
   final balance = await client.getBalancesByAddresses(addresses);
