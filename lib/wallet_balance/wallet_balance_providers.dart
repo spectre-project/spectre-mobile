@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import '../coingecko/coingecko_providers.dart';
 import '../core/core_providers.dart';
 import '../spectre/spectre.dart';
+import '../settings/available_currency.dart';
 import '../settings/settings_providers.dart';
 import '../util/formatters.dart';
 import '../util/numberutil.dart';
@@ -126,13 +127,13 @@ final formatedTotalFiatProvider = Provider.autoDispose((ref) {
     decimalDigits: decimals,
   );
 
-  final decimalFormatter = DecimalFormatter(formatter);
-  return decimalFormatter.format(fiat);
+  return formatter.format(DecimalIntl(fiat));
 });
 
 final formatedSpectrePriceProvider = Provider.autoDispose((ref) {
   final price = ref.watch(spectrePriceProvider).price;
   final currency = ref.watch(currencyProvider);
+  final symbol = ref.watch(sprSymbolProvider);
   final decimals = price >= Decimal.parse('1')
       ? 2
       : price >= Decimal.parse('0.01')
@@ -140,16 +141,13 @@ final formatedSpectrePriceProvider = Provider.autoDispose((ref) {
           : price >= Decimal.parse('0.0001')
               ? 6
               : 8;
-
-  final formatter = NumberFormat.currency(
+  final priceStr = NumberFormat.currency(
     symbol: currency.symbol,
     name: currency.name,
     decimalDigits: decimals,
-  );
-  final decimalFormatter = DecimalFormatter(formatter);
-  final priceStr = decimalFormatter.format(price);
+  ).format(DecimalIntl(price));
 
-  return '$priceStr / SPR';
+  return '$priceStr / $symbol';
 });
 
 final fiatValueForAddressProvider =
@@ -165,12 +163,10 @@ final formatedFiatForAddressProvider =
   final balance = ref.watch(fiatValueForAddressProvider(address));
   final currency = ref.watch(currencyProvider);
 
-  final formatter = NumberFormat.currency(
+  return NumberFormat.currency(
     symbol: currency.symbol,
     name: currency.name,
-  );
-  final decimalFormatter = DecimalFormatter(formatter);
-  return decimalFormatter.format(balance);
+  ).format(DecimalIntl(balance));
 });
 
 final formatedFiatForAmountProvider =
@@ -179,13 +175,10 @@ final formatedFiatForAmountProvider =
   final currency = ref.watch(currencyProvider);
 
   final fiatValue = value.value * price.price;
-
-  final formatter = NumberFormat.currency(
+  return NumberFormat.currency(
     symbol: currency.symbol,
     name: currency.name,
-  );
-  final decimalFormatter = DecimalFormatter(formatter);
-  return decimalFormatter.format(fiatValue);
+  ).format(DecimalIntl(fiatValue));
 });
 
 final fiatForAmountProvider =
@@ -197,18 +190,18 @@ final fiatForAmountProvider =
   if (fiatValue == Decimal.zero) {
     return '0';
   }
-  final formatter = NumberFormat.currency(
+  final formater = NumberFormat.currency(
     symbol: currency.symbol,
     name: currency.name,
   );
-  final decimalFormatter = DecimalFormatter(formatter);
-  return decimalFormatter
-      .format(fiatValue)
-      .replaceAll(formatter.currencySymbol, '');
+  return formater
+      .format(DecimalIntl(fiatValue))
+      .replaceAll(formater.currencySymbol, '');
 });
 
 final spectreFormatterProvider = Provider((ref) {
-  final format = NumberFormat.currency(name: '', symbol: 'SPR');
+  final symbol = ref.watch(sprSymbolProvider);
+  final format = NumberFormat.currency(name: '', symbol: symbol);
   final formatter = CurrencyFormatter(
     groupSeparator: format.symbols.GROUP_SEP,
     decimalSeparator: format.symbols.DECIMAL_SEP,
@@ -228,10 +221,16 @@ final fiatFormatterProvider = Provider.autoDispose((ref) {
     name: currency.name,
     symbol: currency.symbol,
   );
+
+  var maxDecimalDigits = format.decimalDigits ?? 2;
+  if (currency.currency == AvailableCurrencies.BTC) {
+    maxDecimalDigits = 8;
+  }
+
   final formatter = CurrencyFormatter(
     groupSeparator: format.symbols.GROUP_SEP,
     decimalSeparator: format.symbols.DECIMAL_SEP,
-    maxDecimalDigits: format.decimalDigits ?? 2,
+    maxDecimalDigits: maxDecimalDigits,
     maxAmount: maxAmount,
   );
 

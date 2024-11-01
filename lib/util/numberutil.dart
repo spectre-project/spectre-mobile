@@ -37,8 +37,7 @@ class NumberUtil {
       symbol: '',
       decimalDigits: scale,
     );
-    final decimalFormatter = DecimalFormatter(formatter);
-    final formated = decimalFormatter.format(value).trim();
+    final formated = formatter.format(DecimalIntl(value)).trim();
 
     return formated;
   }

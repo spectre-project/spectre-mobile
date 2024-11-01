@@ -210,6 +210,39 @@ class SpectreClient {
     return result.submitTransactionResponse.transactionId;
   }
 
+  Future<({String transactionId, RpcTransaction replacedTransaction})>
+      submitTransactionReplacement(RpcTransaction transaction) async {
+    final message = SpectredRequest(
+      submitTransactionReplacementRequest:
+          SubmitTransactionReplacementRequestMessage(
+        transaction: transaction,
+      ),
+    );
+    final result = await _singleRequest(message);
+    final response = result.submitTransactionReplacementResponse;
+    final error = response.error;
+    if (error.message.isNotEmpty) {
+      throw RpcException(error);
+    }
+    return (
+      transactionId: response.transactionId,
+      replacedTransaction: response.replacedTransaction,
+    );
+  }
+
+  // Fee Estimate
+  Future<RpcFeeEstimate> getFeeEstimate() async {
+    final message = SpectredRequest(
+      getFeeEstimateRequest: GetFeeEstimateRequestMessage(),
+    );
+    final result = await _singleRequest(message);
+    final error = result.getFeeEstimateResponse.error;
+    if (error.message.isNotEmpty) {
+      throw RpcException(error);
+    }
+    return result.getFeeEstimateResponse.estimate;
+  }
+
   // Mempool
 
   Future<RpcMempoolEntry> getMempoolEntry({
