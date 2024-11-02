@@ -91,7 +91,7 @@ class FeeSheet extends HookConsumerWidget {
     }
 
     return SheetWidget(
-      title: l10n.feeTitle,
+      title: l10n.manageFee,
       mainWidget: Column(
         children: [
           const SizedBox(height: 20),
@@ -103,7 +103,7 @@ class FeeSheet extends HookConsumerWidget {
           AmountCard(amount: baseFee),
           const SizedBox(height: 40),
           Text(
-            l10n.feePriorityUppsercase,
+            l10n.feePriorityUppercase,
             style: styles.textStyleSubHeader,
           ),
           FiatValueContainer(

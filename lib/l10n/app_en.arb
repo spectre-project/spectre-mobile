@@ -549,10 +549,10 @@
   "bip39PassphraseMismatch": "Passphrases do not match!",
   "bip39PassphraseNote": "Wallet with BIP39 passphrase.",
   "feePriorityHint": "Enter Priority Fee",
-  "feeTitle": "Manage Fee",
+  "manageFee": "Manage Fee",
   "feeBaseUppercase": "BASE FEE",
-  "feePriorityUppsercase": "PRIORITY FEE",
-  "feeUpdateAddressError": "Failed to recognise destination address",
+  "feePriorityUppercase": "PRIORITY FEE",
+  "feeUpdateAddressError": "Failed to recognize destination address",
   "feeUpdateRebuildError": "Failed to rebuild transaction",
   "feeUpdateRebuildError2": "Failed to rebuild transaction with new fee",
   "feeUpdateError": "Failed to update fee",
@@ -573,10 +573,10 @@
   "txPending": "PENDING",
   "txPendingMessage": "This transaction is pending",
   "txPendingTitle": "Pending Transaction",
-  "txPendingContent": "There is a pending transactions in the mempool.",
+  "txPendingContent": "There is a pending transaction in the mempool.",
   "txPendingActionUpdateFee": "Update Tx Fee",
-  "txPendingActionRbf": "Replace By Fee",
+  "txPendingActionRbf": "Replace by Fee (RBF)",
   "txInMempool": "in mempool",
   "utxoSelectionTitle": "Select UTXOs",
-  "utxoSelectionHint": "Please select more UTXOs"
+  "utxoSelectionHint": "Please select additional UTXOs"
 }
