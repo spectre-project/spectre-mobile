@@ -305,6 +305,7 @@ final networkStatsProvider = FutureProvider<NetworkStats>((ref) async {
   final circulatingSupply = await api.getCirculatingSupply();
   final blockReward = await api.getBlockReward();
   final halvingInfo = await api.getHalvingInfo();
+  final spectreInfo = await api.getSpectredInfo();
 
   return NetworkStats(
     hashrate: hashrate,
@@ -313,6 +314,8 @@ final networkStatsProvider = FutureProvider<NetworkStats>((ref) async {
     blockReward: blockReward,
     nextHalvingDate: halvingInfo['nextHalvingDate'],
     nextHalvingAmount: halvingInfo['nextHalvingAmount'],
+    mempoolSize: spectreInfo['mempoolSize'],
+    serverVersion: spectreInfo['serverVersion'],
   );
 });
 
@@ -323,6 +326,8 @@ class NetworkStats {
   final double blockReward;
   final String nextHalvingDate;
   final double nextHalvingAmount;
+  final String mempoolSize;
+  final String serverVersion;
 
   NetworkStats({
     required this.hashrate,
@@ -331,5 +336,7 @@ class NetworkStats {
     required this.blockReward,
     required this.nextHalvingDate,
     required this.nextHalvingAmount,
+    required this.mempoolSize,
+    required this.serverVersion,
   });
 }
