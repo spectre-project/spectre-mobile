@@ -388,6 +388,39 @@ class SpectreApiMainnet implements SpectreApi {
     }
   }
 
+  Future<Map<String, dynamic>> getSpectredInfo({
+    int retryCount = 3,
+    Duration retryDelay = const Duration(seconds: 1),
+  }) async {
+    final url = '$baseUrl/info/spectred';
+
+    try {
+      final response = await http.get(Uri.parse(url), headers: {
+        'accept': 'application/json',
+      });
+
+      if (response.statusCode != 200) {
+        throw Exception('Failed to get Spectre info');
+      }
+
+      final data = jsonDecode(response.body);
+      return {
+        "mempoolSize": data["mempoolSize"],
+        "serverVersion": data["serverVersion"],
+      };
+    } catch (_) {
+      if (retryCount == 0) {
+        rethrow;
+      }
+
+      await Future.delayed(retryDelay);
+      return getSpectredInfo(
+        retryCount: retryCount - 1,
+        retryDelay: retryDelay,
+      );
+    }
+  }
+
   Future<Map<String, dynamic>> getHalvingInfo({
     int retryCount = 3,
     Duration retryDelay = const Duration(seconds: 1),

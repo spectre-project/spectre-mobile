@@ -43,6 +43,7 @@ class DownloadTxsDialog extends HookConsumerWidget {
         final txNotifier = ref.read(txNotifierProvider);
         final txNotes = ref.read(txNotesProvider);
         final addresses = ref.read(addressNotifierProvider);
+        final sprSymbol = ref.read(sprSymbolProvider);
 
         try {
           if (options.refreshTxs) {
@@ -94,7 +95,7 @@ class DownloadTxsDialog extends HookConsumerWidget {
                   return null;
                 }
 
-                return getCsvForItem(item);
+                return getCsvForItem(item, sprSymbol);
               })
               .whereNotNull()
               .toIList();

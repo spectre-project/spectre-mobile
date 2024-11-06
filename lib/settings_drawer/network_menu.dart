@@ -16,7 +16,7 @@ import '../widgets/sheet_util.dart';
 import 'double_line_item.dart';
 import '../settings_drawer/selection_item.dart';
 
-class NetworkMenu extends ConsumerWidget {
+class NetworkMenu extends ConsumerStatefulWidget {
   final VoidCallback onBackAction;
   const NetworkMenu({
     Key? key,
@@ -24,7 +24,32 @@ class NetworkMenu extends ConsumerWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _NetworkMenuState createState() => _NetworkMenuState();
+}
+
+class _NetworkMenuState extends ConsumerState<NetworkMenu>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+    _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final theme = ref.watch(themeProvider);
     final styles = ref.watch(stylesProvider);
     final l10n = l10nOf(context);
@@ -57,7 +82,7 @@ class NetworkMenu extends ConsumerWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: AppIconButton(
                       icon: AppIcons.back,
-                      onPressed: onBackAction,
+                      onPressed: widget.onBackAction,
                     ),
                   ),
                   Text(
@@ -110,9 +135,25 @@ class NetworkMenu extends ConsumerWidget {
                           bottom: 10,
                           top: 20,
                         ),
-                        child: Text(
-                          "Network Stats",
-                          style: styles.textStyleAppTextFieldHint,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Network Stats",
+                              style: styles.textStyleAppTextFieldHint,
+                            ),
+                            RotationTransition(
+                              turns: _animation,
+                              child: IconButton(
+                                icon: Icon(Icons.refresh),
+                                onPressed: () async {
+                                  _controller.forward(from: 0);
+                                  return await ref
+                                      .refresh(networkStatsProvider.future);
+                                },
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       Divider(height: 2, color: theme.text15),
@@ -124,7 +165,7 @@ class NetworkMenu extends ConsumerWidget {
                               DoubleLineItem(
                                 heading: "Network Hashrate",
                                 defaultMethod: SelectionItem(
-                                    "${stats.hashrate.toStringAsFixed(2)} MH/s"),
+                                    "${stats.hashrate.toStringAsFixed(3)} MH/s"),
                                 icon: Icons.speed,
                                 onPressed: () {},
                               ),
@@ -140,8 +181,16 @@ class NetworkMenu extends ConsumerWidget {
                               DoubleLineItem(
                                 heading: "Circulating Supply",
                                 defaultMethod: SelectionItem(
-                                    "${stats.circulatingSupply.toStringAsFixed(2)} mio"),
+                                    "${stats.circulatingSupply.toStringAsFixed(3)} mio"),
                                 icon: Icons.monetization_on,
+                                onPressed: () {},
+                              ),
+                              Divider(height: 2, color: theme.text15),
+                              DoubleLineItem(
+                                heading: "Mempool Size",
+                                defaultMethod:
+                                    SelectionItem("${stats.mempoolSize}"),
+                                icon: Icons.storage,
                                 onPressed: () {},
                               ),
                               Divider(height: 2, color: theme.text15),
@@ -166,6 +215,14 @@ class NetworkMenu extends ConsumerWidget {
                                 defaultMethod:
                                     SelectionItem("${stats.nextHalvingAmount}"),
                                 icon: Icons.timelapse,
+                                onPressed: () {},
+                              ),
+                              Divider(height: 2, color: theme.text15),
+                              DoubleLineItem(
+                                heading: "Server Version",
+                                defaultMethod:
+                                    SelectionItem("${stats.serverVersion}"),
+                                icon: Icons.verified_user,
                                 onPressed: () {},
                               ),
                             ],

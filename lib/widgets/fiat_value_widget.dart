@@ -25,6 +25,7 @@ class FiatValueWidget extends ConsumerWidget {
 
     final fiatValue = ref.watch(formatedFiatForAmountProvider(amount));
     final amountValue = NumberUtil.formatedAmount(amount);
+    final symbol = ref.watch(sprSymbolProvider);
 
     return Visibility(
       visible: amount.value != Decimal.zero,
@@ -39,7 +40,7 @@ class FiatValueWidget extends ConsumerWidget {
             ),
       child: Container(
         child: Text(
-          showAmount ? '≈ $amountValue SPR' : '≈ $fiatValue',
+          showAmount ? '≈ $amountValue $symbol' : '≈ $fiatValue',
           style: styles.textStyleTransactionAmount,
         ),
       ),

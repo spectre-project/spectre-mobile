@@ -1111,7 +1111,7 @@ class RpcTransactionVerboseData extends $pb.GeneratedMessage {
   factory RpcTransactionVerboseData({
     $core.String? transactionId,
     $core.String? hash,
-    $fixnum.Int64? mass,
+    $fixnum.Int64? computeMass,
     $core.String? blockHash,
     $fixnum.Int64? blockTime,
   }) {
@@ -1122,8 +1122,8 @@ class RpcTransactionVerboseData extends $pb.GeneratedMessage {
     if (hash != null) {
       $result.hash = hash;
     }
-    if (mass != null) {
-      $result.mass = mass;
+    if (computeMass != null) {
+      $result.computeMass = computeMass;
     }
     if (blockHash != null) {
       $result.blockHash = blockHash;
@@ -1140,7 +1140,7 @@ class RpcTransactionVerboseData extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RpcTransactionVerboseData', package: const $pb.PackageName(_omitMessageNames ? '' : 'protowire'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'transactionId', protoName: 'transactionId')
     ..aOS(2, _omitFieldNames ? '' : 'hash')
-    ..a<$fixnum.Int64>(4, _omitFieldNames ? '' : 'mass', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(4, _omitFieldNames ? '' : 'computeMass', $pb.PbFieldType.OU6, protoName: 'computeMass', defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOS(12, _omitFieldNames ? '' : 'blockHash', protoName: 'blockHash')
     ..a<$fixnum.Int64>(14, _omitFieldNames ? '' : 'blockTime', $pb.PbFieldType.OU6, protoName: 'blockTime', defaultOrMaker: $fixnum.Int64.ZERO)
     ..hasRequiredFields = false
@@ -1186,13 +1186,13 @@ class RpcTransactionVerboseData extends $pb.GeneratedMessage {
   void clearHash() => clearField(2);
 
   @$pb.TagNumber(4)
-  $fixnum.Int64 get mass => $_getI64(2);
+  $fixnum.Int64 get computeMass => $_getI64(2);
   @$pb.TagNumber(4)
-  set mass($fixnum.Int64 v) { $_setInt64(2, v); }
+  set computeMass($fixnum.Int64 v) { $_setInt64(2, v); }
   @$pb.TagNumber(4)
-  $core.bool hasMass() => $_has(2);
+  $core.bool hasComputeMass() => $_has(2);
   @$pb.TagNumber(4)
-  void clearMass() => clearField(4);
+  void clearComputeMass() => clearField(4);
 
   @$pb.TagNumber(12)
   $core.String get blockHash => $_getSZ(3);
@@ -3560,8 +3560,13 @@ class GetSubnetworkResponseMessage extends $pb.GeneratedMessage {
   RPCError ensureError() => $_ensure(1);
 }
 
-/// GetVirtualChainFromBlockRequestMessage requests the virtual selected
-/// parent chain from some startHash to this spectred's current virtual
+/// / GetVirtualChainFromBlockRequestMessage requests the virtual selected
+/// / parent chain from some startHash to this spectred's current virtual
+/// / Note:
+/// /     this call batches the response to:
+/// /         a. the network's `mergeset size limit * 10` amount of added chain blocks, if `includeAcceptedTransactionIds = false`
+/// /         b. or `mergeset size limit * 10` amount of merged blocks, if `includeAcceptedTransactionIds = true`
+/// /         c. it does not batch the removed chain blocks, only the added ones.
 class GetVirtualChainFromBlockRequestMessage extends $pb.GeneratedMessage {
   factory GetVirtualChainFromBlockRequestMessage({
     $core.String? startHash,
@@ -8241,6 +8246,7 @@ class GetSystemInfoResponseMessage extends $pb.GeneratedMessage {
     $core.int? coreNum,
     $fixnum.Int64? totalMemory,
     $core.int? fdLimit,
+    $core.int? proxySocketLimitPerCpuCore,
     RPCError? error,
   }) {
     final $result = create();
@@ -8262,6 +8268,9 @@ class GetSystemInfoResponseMessage extends $pb.GeneratedMessage {
     if (fdLimit != null) {
       $result.fdLimit = fdLimit;
     }
+    if (proxySocketLimitPerCpuCore != null) {
+      $result.proxySocketLimitPerCpuCore = proxySocketLimitPerCpuCore;
+    }
     if (error != null) {
       $result.error = error;
     }
@@ -8278,6 +8287,7 @@ class GetSystemInfoResponseMessage extends $pb.GeneratedMessage {
     ..a<$core.int>(4, _omitFieldNames ? '' : 'coreNum', $pb.PbFieldType.OU3, protoName: 'coreNum')
     ..a<$fixnum.Int64>(5, _omitFieldNames ? '' : 'totalMemory', $pb.PbFieldType.OU6, protoName: 'totalMemory', defaultOrMaker: $fixnum.Int64.ZERO)
     ..a<$core.int>(6, _omitFieldNames ? '' : 'fdLimit', $pb.PbFieldType.OU3, protoName: 'fdLimit')
+    ..a<$core.int>(7, _omitFieldNames ? '' : 'proxySocketLimitPerCpuCore', $pb.PbFieldType.OU3, protoName: 'proxySocketLimitPerCpuCore')
     ..aOM<RPCError>(1000, _omitFieldNames ? '' : 'error', subBuilder: RPCError.create)
     ..hasRequiredFields = false
   ;
@@ -8357,16 +8367,25 @@ class GetSystemInfoResponseMessage extends $pb.GeneratedMessage {
   @$pb.TagNumber(6)
   void clearFdLimit() => clearField(6);
 
+  @$pb.TagNumber(7)
+  $core.int get proxySocketLimitPerCpuCore => $_getIZ(6);
+  @$pb.TagNumber(7)
+  set proxySocketLimitPerCpuCore($core.int v) { $_setUnsignedInt32(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasProxySocketLimitPerCpuCore() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearProxySocketLimitPerCpuCore() => clearField(7);
+
   @$pb.TagNumber(1000)
-  RPCError get error => $_getN(6);
+  RPCError get error => $_getN(7);
   @$pb.TagNumber(1000)
   set error(RPCError v) { setField(1000, v); }
   @$pb.TagNumber(1000)
-  $core.bool hasError() => $_has(6);
+  $core.bool hasError() => $_has(7);
   @$pb.TagNumber(1000)
   void clearError() => clearField(1000);
   @$pb.TagNumber(1000)
-  RPCError ensureError() => $_ensure(6);
+  RPCError ensureError() => $_ensure(7);
 }
 
 class GetMetricsRequestMessage extends $pb.GeneratedMessage {
@@ -8930,7 +8949,7 @@ class GetDaaScoreTimestampEstimateRequestMessage extends $pb.GeneratedMessage {
   factory GetDaaScoreTimestampEstimateRequestMessage.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetDaaScoreTimestampEstimateRequestMessage', package: const $pb.PackageName(_omitMessageNames ? '' : 'protowire'), createEmptyInstance: create)
-    ..p<$fixnum.Int64>(1, _omitFieldNames ? '' : 'daaScores', $pb.PbFieldType.KU6)
+    ..p<$fixnum.Int64>(1, _omitFieldNames ? '' : 'daaScores', $pb.PbFieldType.KU6, protoName: 'daaScores')
     ..hasRequiredFields = false
   ;
 
@@ -9039,7 +9058,7 @@ class RpcFeerateBucket extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RpcFeerateBucket', package: const $pb.PackageName(_omitMessageNames ? '' : 'protowire'), createEmptyInstance: create)
     ..a<$core.double>(1, _omitFieldNames ? '' : 'feerate', $pb.PbFieldType.OD)
-    ..a<$core.double>(2, _omitFieldNames ? '' : 'estimatedSeconds', $pb.PbFieldType.OD)
+    ..a<$core.double>(2, _omitFieldNames ? '' : 'estimatedSeconds', $pb.PbFieldType.OD, protoName: 'estimatedSeconds')
     ..hasRequiredFields = false
   ;
 
@@ -9112,9 +9131,9 @@ class RpcFeeEstimate extends $pb.GeneratedMessage {
   factory RpcFeeEstimate.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RpcFeeEstimate', package: const $pb.PackageName(_omitMessageNames ? '' : 'protowire'), createEmptyInstance: create)
-    ..aOM<RpcFeerateBucket>(1, _omitFieldNames ? '' : 'priorityBucket', subBuilder: RpcFeerateBucket.create)
-    ..pc<RpcFeerateBucket>(2, _omitFieldNames ? '' : 'normalBuckets', $pb.PbFieldType.PM, subBuilder: RpcFeerateBucket.create)
-    ..pc<RpcFeerateBucket>(3, _omitFieldNames ? '' : 'lowBuckets', $pb.PbFieldType.PM, subBuilder: RpcFeerateBucket.create)
+    ..aOM<RpcFeerateBucket>(1, _omitFieldNames ? '' : 'priorityBucket', protoName: 'priorityBucket', subBuilder: RpcFeerateBucket.create)
+    ..pc<RpcFeerateBucket>(2, _omitFieldNames ? '' : 'normalBuckets', $pb.PbFieldType.PM, protoName: 'normalBuckets', subBuilder: RpcFeerateBucket.create)
+    ..pc<RpcFeerateBucket>(3, _omitFieldNames ? '' : 'lowBuckets', $pb.PbFieldType.PM, protoName: 'lowBuckets', subBuilder: RpcFeerateBucket.create)
     ..hasRequiredFields = false
   ;
 
@@ -9153,7 +9172,7 @@ class RpcFeeEstimate extends $pb.GeneratedMessage {
 
   /// A vector of *normal* priority feerate values. The first value of this vector is guaranteed to exist and
   /// provide an estimation for sub-*minute* DAG inclusion. All other values will have shorter estimation
-  /// times than all `low_bucket` values. Therefor by chaining `[priority] | normal | low` and interpolating
+  /// times than all `lowBucket` values. Therefor by chaining `[priority] | normal | low` and interpolating
   /// between them, one can compose a complete feerate function on the client side. The API makes an effort
   /// to sample enough "interesting" points on the feerate-to-time curve, so that the interpolation is meaningful.
   @$pb.TagNumber(2)
@@ -9200,12 +9219,12 @@ class RpcFeeEstimateVerboseExperimentalData extends $pb.GeneratedMessage {
   factory RpcFeeEstimateVerboseExperimentalData.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RpcFeeEstimateVerboseExperimentalData', package: const $pb.PackageName(_omitMessageNames ? '' : 'protowire'), createEmptyInstance: create)
-    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'mempoolReadyTransactionsCount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'mempoolReadyTransactionsTotalMass', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'networkMassPerSecond', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
-    ..a<$core.double>(11, _omitFieldNames ? '' : 'nextBlockTemplateFeerateMin', $pb.PbFieldType.OD)
-    ..a<$core.double>(12, _omitFieldNames ? '' : 'nextBlockTemplateFeerateMedian', $pb.PbFieldType.OD)
-    ..a<$core.double>(13, _omitFieldNames ? '' : 'nextBlockTemplateFeerateMax', $pb.PbFieldType.OD)
+    ..a<$fixnum.Int64>(1, _omitFieldNames ? '' : 'mempoolReadyTransactionsCount', $pb.PbFieldType.OU6, protoName: 'mempoolReadyTransactionsCount', defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(2, _omitFieldNames ? '' : 'mempoolReadyTransactionsTotalMass', $pb.PbFieldType.OU6, protoName: 'mempoolReadyTransactionsTotalMass', defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$fixnum.Int64>(3, _omitFieldNames ? '' : 'networkMassPerSecond', $pb.PbFieldType.OU6, protoName: 'networkMassPerSecond', defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$core.double>(11, _omitFieldNames ? '' : 'nextBlockTemplateFeerateMin', $pb.PbFieldType.OD, protoName: 'nextBlockTemplateFeerateMin')
+    ..a<$core.double>(12, _omitFieldNames ? '' : 'nextBlockTemplateFeerateMedian', $pb.PbFieldType.OD, protoName: 'nextBlockTemplateFeerateMedian')
+    ..a<$core.double>(13, _omitFieldNames ? '' : 'nextBlockTemplateFeerateMax', $pb.PbFieldType.OD, protoName: 'nextBlockTemplateFeerateMax')
     ..hasRequiredFields = false
   ;
 

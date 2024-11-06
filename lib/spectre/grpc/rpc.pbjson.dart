@@ -241,7 +241,7 @@ const RpcTransactionVerboseData$json = {
   '2': [
     {'1': 'transactionId', '3': 1, '4': 1, '5': 9, '10': 'transactionId'},
     {'1': 'hash', '3': 2, '4': 1, '5': 9, '10': 'hash'},
-    {'1': 'mass', '3': 4, '4': 1, '5': 4, '10': 'mass'},
+    {'1': 'computeMass', '3': 4, '4': 1, '5': 4, '10': 'computeMass'},
     {'1': 'blockHash', '3': 12, '4': 1, '5': 9, '10': 'blockHash'},
     {'1': 'blockTime', '3': 14, '4': 1, '5': 4, '10': 'blockTime'},
   ],
@@ -250,8 +250,9 @@ const RpcTransactionVerboseData$json = {
 /// Descriptor for `RpcTransactionVerboseData`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List rpcTransactionVerboseDataDescriptor = $convert.base64Decode(
     'ChlScGNUcmFuc2FjdGlvblZlcmJvc2VEYXRhEiQKDXRyYW5zYWN0aW9uSWQYASABKAlSDXRyYW'
-    '5zYWN0aW9uSWQSEgoEaGFzaBgCIAEoCVIEaGFzaBISCgRtYXNzGAQgASgEUgRtYXNzEhwKCWJs'
-    'b2NrSGFzaBgMIAEoCVIJYmxvY2tIYXNoEhwKCWJsb2NrVGltZRgOIAEoBFIJYmxvY2tUaW1l');
+    '5zYWN0aW9uSWQSEgoEaGFzaBgCIAEoCVIEaGFzaBIgCgtjb21wdXRlTWFzcxgEIAEoBFILY29t'
+    'cHV0ZU1hc3MSHAoJYmxvY2tIYXNoGAwgASgJUglibG9ja0hhc2gSHAoJYmxvY2tUaW1lGA4gAS'
+    'gEUglibG9ja1RpbWU=');
 
 @$core.Deprecated('Use rpcTransactionInputVerboseDataDescriptor instead')
 const RpcTransactionInputVerboseData$json = {
@@ -1839,6 +1840,7 @@ const GetSystemInfoResponseMessage$json = {
     {'1': 'coreNum', '3': 4, '4': 1, '5': 13, '10': 'coreNum'},
     {'1': 'totalMemory', '3': 5, '4': 1, '5': 4, '10': 'totalMemory'},
     {'1': 'fdLimit', '3': 6, '4': 1, '5': 13, '10': 'fdLimit'},
+    {'1': 'proxySocketLimitPerCpuCore', '3': 7, '4': 1, '5': 13, '10': 'proxySocketLimitPerCpuCore'},
     {'1': 'error', '3': 1000, '4': 1, '5': 11, '6': '.protowire.RPCError', '10': 'error'},
   ],
 };
@@ -1848,8 +1850,9 @@ final $typed_data.Uint8List getSystemInfoResponseMessageDescriptor = $convert.ba
     'ChxHZXRTeXN0ZW1JbmZvUmVzcG9uc2VNZXNzYWdlEhgKB3ZlcnNpb24YASABKAlSB3ZlcnNpb2'
     '4SGgoIc3lzdGVtSWQYAiABKAlSCHN5c3RlbUlkEhgKB2dpdEhhc2gYAyABKAlSB2dpdEhhc2gS'
     'GAoHY29yZU51bRgEIAEoDVIHY29yZU51bRIgCgt0b3RhbE1lbW9yeRgFIAEoBFILdG90YWxNZW'
-    '1vcnkSGAoHZmRMaW1pdBgGIAEoDVIHZmRMaW1pdBIqCgVlcnJvchjoByABKAsyEy5wcm90b3dp'
-    'cmUuUlBDRXJyb3JSBWVycm9y');
+    '1vcnkSGAoHZmRMaW1pdBgGIAEoDVIHZmRMaW1pdBI+Chpwcm94eVNvY2tldExpbWl0UGVyQ3B1'
+    'Q29yZRgHIAEoDVIacHJveHlTb2NrZXRMaW1pdFBlckNwdUNvcmUSKgoFZXJyb3IY6AcgASgLMh'
+    'MucHJvdG93aXJlLlJQQ0Vycm9yUgVlcnJvcg==');
 
 @$core.Deprecated('Use getMetricsRequestMessageDescriptor instead')
 const GetMetricsRequestMessage$json = {
@@ -1959,14 +1962,14 @@ final $typed_data.Uint8List getSyncStatusResponseMessageDescriptor = $convert.ba
 const GetDaaScoreTimestampEstimateRequestMessage$json = {
   '1': 'GetDaaScoreTimestampEstimateRequestMessage',
   '2': [
-    {'1': 'daa_scores', '3': 1, '4': 3, '5': 4, '10': 'daaScores'},
+    {'1': 'daaScores', '3': 1, '4': 3, '5': 4, '10': 'daaScores'},
   ],
 };
 
 /// Descriptor for `GetDaaScoreTimestampEstimateRequestMessage`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getDaaScoreTimestampEstimateRequestMessageDescriptor = $convert.base64Decode(
-    'CipHZXREYWFTY29yZVRpbWVzdGFtcEVzdGltYXRlUmVxdWVzdE1lc3NhZ2USHQoKZGFhX3Njb3'
-    'JlcxgBIAMoBFIJZGFhU2NvcmVz');
+    'CipHZXREYWFTY29yZVRpbWVzdGFtcEVzdGltYXRlUmVxdWVzdE1lc3NhZ2USHAoJZGFhU2Nvcm'
+    'VzGAEgAygEUglkYWFTY29yZXM=');
 
 @$core.Deprecated('Use getDaaScoreTimestampEstimateResponseMessageDescriptor instead')
 const GetDaaScoreTimestampEstimateResponseMessage$json = {
@@ -1988,56 +1991,55 @@ const RpcFeerateBucket$json = {
   '1': 'RpcFeerateBucket',
   '2': [
     {'1': 'feerate', '3': 1, '4': 1, '5': 1, '10': 'feerate'},
-    {'1': 'estimated_seconds', '3': 2, '4': 1, '5': 1, '10': 'estimatedSeconds'},
+    {'1': 'estimatedSeconds', '3': 2, '4': 1, '5': 1, '10': 'estimatedSeconds'},
   ],
 };
 
 /// Descriptor for `RpcFeerateBucket`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List rpcFeerateBucketDescriptor = $convert.base64Decode(
-    'ChBScGNGZWVyYXRlQnVja2V0EhgKB2ZlZXJhdGUYASABKAFSB2ZlZXJhdGUSKwoRZXN0aW1hdG'
-    'VkX3NlY29uZHMYAiABKAFSEGVzdGltYXRlZFNlY29uZHM=');
+    'ChBScGNGZWVyYXRlQnVja2V0EhgKB2ZlZXJhdGUYASABKAFSB2ZlZXJhdGUSKgoQZXN0aW1hdG'
+    'VkU2Vjb25kcxgCIAEoAVIQZXN0aW1hdGVkU2Vjb25kcw==');
 
 @$core.Deprecated('Use rpcFeeEstimateDescriptor instead')
 const RpcFeeEstimate$json = {
   '1': 'RpcFeeEstimate',
   '2': [
-    {'1': 'priority_bucket', '3': 1, '4': 1, '5': 11, '6': '.protowire.RpcFeerateBucket', '10': 'priorityBucket'},
-    {'1': 'normal_buckets', '3': 2, '4': 3, '5': 11, '6': '.protowire.RpcFeerateBucket', '10': 'normalBuckets'},
-    {'1': 'low_buckets', '3': 3, '4': 3, '5': 11, '6': '.protowire.RpcFeerateBucket', '10': 'lowBuckets'},
+    {'1': 'priorityBucket', '3': 1, '4': 1, '5': 11, '6': '.protowire.RpcFeerateBucket', '10': 'priorityBucket'},
+    {'1': 'normalBuckets', '3': 2, '4': 3, '5': 11, '6': '.protowire.RpcFeerateBucket', '10': 'normalBuckets'},
+    {'1': 'lowBuckets', '3': 3, '4': 3, '5': 11, '6': '.protowire.RpcFeerateBucket', '10': 'lowBuckets'},
   ],
 };
 
 /// Descriptor for `RpcFeeEstimate`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List rpcFeeEstimateDescriptor = $convert.base64Decode(
-    'Cg5ScGNGZWVFc3RpbWF0ZRJECg9wcmlvcml0eV9idWNrZXQYASABKAsyGy5wcm90b3dpcmUuUn'
-    'BjRmVlcmF0ZUJ1Y2tldFIOcHJpb3JpdHlCdWNrZXQSQgoObm9ybWFsX2J1Y2tldHMYAiADKAsy'
-    'Gy5wcm90b3dpcmUuUnBjRmVlcmF0ZUJ1Y2tldFINbm9ybWFsQnVja2V0cxI8Cgtsb3dfYnVja2'
-    'V0cxgDIAMoCzIbLnByb3Rvd2lyZS5ScGNGZWVyYXRlQnVja2V0Ugpsb3dCdWNrZXRz');
+    'Cg5ScGNGZWVFc3RpbWF0ZRJDCg5wcmlvcml0eUJ1Y2tldBgBIAEoCzIbLnByb3Rvd2lyZS5ScG'
+    'NGZWVyYXRlQnVja2V0Ug5wcmlvcml0eUJ1Y2tldBJBCg1ub3JtYWxCdWNrZXRzGAIgAygLMhsu'
+    'cHJvdG93aXJlLlJwY0ZlZXJhdGVCdWNrZXRSDW5vcm1hbEJ1Y2tldHMSOwoKbG93QnVja2V0cx'
+    'gDIAMoCzIbLnByb3Rvd2lyZS5ScGNGZWVyYXRlQnVja2V0Ugpsb3dCdWNrZXRz');
 
 @$core.Deprecated('Use rpcFeeEstimateVerboseExperimentalDataDescriptor instead')
 const RpcFeeEstimateVerboseExperimentalData$json = {
   '1': 'RpcFeeEstimateVerboseExperimentalData',
   '2': [
-    {'1': 'mempool_ready_transactions_count', '3': 1, '4': 1, '5': 4, '10': 'mempoolReadyTransactionsCount'},
-    {'1': 'mempool_ready_transactions_total_mass', '3': 2, '4': 1, '5': 4, '10': 'mempoolReadyTransactionsTotalMass'},
-    {'1': 'network_mass_per_second', '3': 3, '4': 1, '5': 4, '10': 'networkMassPerSecond'},
-    {'1': 'next_block_template_feerate_min', '3': 11, '4': 1, '5': 1, '10': 'nextBlockTemplateFeerateMin'},
-    {'1': 'next_block_template_feerate_median', '3': 12, '4': 1, '5': 1, '10': 'nextBlockTemplateFeerateMedian'},
-    {'1': 'next_block_template_feerate_max', '3': 13, '4': 1, '5': 1, '10': 'nextBlockTemplateFeerateMax'},
+    {'1': 'mempoolReadyTransactionsCount', '3': 1, '4': 1, '5': 4, '10': 'mempoolReadyTransactionsCount'},
+    {'1': 'mempoolReadyTransactionsTotalMass', '3': 2, '4': 1, '5': 4, '10': 'mempoolReadyTransactionsTotalMass'},
+    {'1': 'networkMassPerSecond', '3': 3, '4': 1, '5': 4, '10': 'networkMassPerSecond'},
+    {'1': 'nextBlockTemplateFeerateMin', '3': 11, '4': 1, '5': 1, '10': 'nextBlockTemplateFeerateMin'},
+    {'1': 'nextBlockTemplateFeerateMedian', '3': 12, '4': 1, '5': 1, '10': 'nextBlockTemplateFeerateMedian'},
+    {'1': 'nextBlockTemplateFeerateMax', '3': 13, '4': 1, '5': 1, '10': 'nextBlockTemplateFeerateMax'},
   ],
 };
 
 /// Descriptor for `RpcFeeEstimateVerboseExperimentalData`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List rpcFeeEstimateVerboseExperimentalDataDescriptor = $convert.base64Decode(
-    'CiVScGNGZWVFc3RpbWF0ZVZlcmJvc2VFeHBlcmltZW50YWxEYXRhEkcKIG1lbXBvb2xfcmVhZH'
-    'lfdHJhbnNhY3Rpb25zX2NvdW50GAEgASgEUh1tZW1wb29sUmVhZHlUcmFuc2FjdGlvbnNDb3Vu'
-    'dBJQCiVtZW1wb29sX3JlYWR5X3RyYW5zYWN0aW9uc190b3RhbF9tYXNzGAIgASgEUiFtZW1wb2'
-    '9sUmVhZHlUcmFuc2FjdGlvbnNUb3RhbE1hc3MSNQoXbmV0d29ya19tYXNzX3Blcl9zZWNvbmQY'
-    'AyABKARSFG5ldHdvcmtNYXNzUGVyU2Vjb25kEkQKH25leHRfYmxvY2tfdGVtcGxhdGVfZmVlcm'
-    'F0ZV9taW4YCyABKAFSG25leHRCbG9ja1RlbXBsYXRlRmVlcmF0ZU1pbhJKCiJuZXh0X2Jsb2Nr'
-    'X3RlbXBsYXRlX2ZlZXJhdGVfbWVkaWFuGAwgASgBUh5uZXh0QmxvY2tUZW1wbGF0ZUZlZXJhdG'
-    'VNZWRpYW4SRAofbmV4dF9ibG9ja190ZW1wbGF0ZV9mZWVyYXRlX21heBgNIAEoAVIbbmV4dEJs'
-    'b2NrVGVtcGxhdGVGZWVyYXRlTWF4');
+    'CiVScGNGZWVFc3RpbWF0ZVZlcmJvc2VFeHBlcmltZW50YWxEYXRhEkQKHW1lbXBvb2xSZWFkeV'
+    'RyYW5zYWN0aW9uc0NvdW50GAEgASgEUh1tZW1wb29sUmVhZHlUcmFuc2FjdGlvbnNDb3VudBJM'
+    'CiFtZW1wb29sUmVhZHlUcmFuc2FjdGlvbnNUb3RhbE1hc3MYAiABKARSIW1lbXBvb2xSZWFkeV'
+    'RyYW5zYWN0aW9uc1RvdGFsTWFzcxIyChRuZXR3b3JrTWFzc1BlclNlY29uZBgDIAEoBFIUbmV0'
+    'd29ya01hc3NQZXJTZWNvbmQSQAobbmV4dEJsb2NrVGVtcGxhdGVGZWVyYXRlTWluGAsgASgBUh'
+    'tuZXh0QmxvY2tUZW1wbGF0ZUZlZXJhdGVNaW4SRgoebmV4dEJsb2NrVGVtcGxhdGVGZWVyYXRl'
+    'TWVkaWFuGAwgASgBUh5uZXh0QmxvY2tUZW1wbGF0ZUZlZXJhdGVNZWRpYW4SQAobbmV4dEJsb2'
+    'NrVGVtcGxhdGVGZWVyYXRlTWF4GA0gASgBUhtuZXh0QmxvY2tUZW1wbGF0ZUZlZXJhdGVNYXg=');
 
 @$core.Deprecated('Use getFeeEstimateRequestMessageDescriptor instead')
 const GetFeeEstimateRequestMessage$json = {
