@@ -73,7 +73,7 @@ class CompoundUtxosDialog extends ConsumerWidget {
 
         UIUtil.showSnackbar(l10n.compoundSuccess, context);
       } catch (e) {
-        UIUtil.showSnackbar(l10n.compoundFailure, context);
+        UIUtil.showSnackbar('${l10n.compoundFailure}: $e', context);
       } finally {
         appRouter.pop(context);
       }
