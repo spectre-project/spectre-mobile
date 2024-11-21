@@ -8,7 +8,7 @@ import '../spectre/spectre.dart';
 part 'node_types.freezed.dart';
 part 'node_types.g.dart';
 
-const mainnetNodeConfig = NodeConfig(
+const mainnetNodeConfig1 = NodeConfig(
   id: 'd093b14d-da55-4e49-870d-61d63bf201a3',
   name: 'Spectrum Official',
   urls: ['node.spectre-network.org'],
@@ -16,11 +16,20 @@ const mainnetNodeConfig = NodeConfig(
   network: SpectreNetwork.mainnet,
 );
 
+const mainnetNodeConfig2 = NodeConfig(
+  id: '9aee5258-0a32-4731-8a49-360f49c49a72',
+  name: 'Spectrum Official-2',
+  urls: ['node2.spectre-network.xyz'],
+  isSecure: true,
+  network: SpectreNetwork.mainnet,
+);
+
 @freezed
 class NodeConfigSettings with _$NodeConfigSettings {
   const factory NodeConfigSettings({
-    @Default(const IListConst([mainnetNodeConfig])) IList<NodeConfig> options,
-    @Default(mainnetNodeConfig) NodeConfig selected,
+    @Default(IListConst([mainnetNodeConfig1, mainnetNodeConfig2]))
+    IList<NodeConfig> options,
+    @Default(mainnetNodeConfig1) NodeConfig selected,
   }) = _NodeConfigSettings;
 
   factory NodeConfigSettings.fromJson(Map<String, dynamic> json) =>
