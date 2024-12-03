@@ -24,10 +24,19 @@ const mainnetNodeConfig2 = NodeConfig(
   network: SpectreNetwork.mainnet,
 );
 
+const mainnetNodeConfig3 = NodeConfig(
+  id: '9f2789a2-c055-4e56-8a69-e24f9cf43d28',
+  name: 'Spectrum Official-3',
+  urls: ['node3.spectre-network.xyz'],
+  isSecure: true,
+  network: SpectreNetwork.mainnet,
+);
+
 @freezed
 class NodeConfigSettings with _$NodeConfigSettings {
   const factory NodeConfigSettings({
-    @Default(IListConst([mainnetNodeConfig1, mainnetNodeConfig2]))
+    @Default(IListConst(
+        [mainnetNodeConfig1, mainnetNodeConfig2, mainnetNodeConfig3]))
     IList<NodeConfig> options,
     @Default(mainnetNodeConfig1) NodeConfig selected,
   }) = _NodeConfigSettings;
